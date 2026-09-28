@@ -1,6 +1,6 @@
 /**
- * Cybersecurity Roadmap - Application Logic & State Engine
- * Handles LocalStorage persistence, progress calculation, rendering & interactions
+ * Cybersecurity Roadmap - Multi-Page Application Engine
+ * Handles State, Persistence, Shared Navbar, and Dynamic Page Renderers
  */
 
 document.addEventListener("DOMContentLoaded", () => {
@@ -10,7 +10,7 @@ document.addEventListener("DOMContentLoaded", () => {
     return;
   }
 
-  // --- State Management ---
+  // --- State Keys ---
   const STORAGE_KEY_PROGRESS = "cyber_roadmap_progress";
   const STORAGE_KEY_THEME = "cyber_roadmap_theme";
   const STORAGE_KEY_TRACK = "cyber_roadmap_selected_track";
@@ -58,20 +58,103 @@ document.addEventListener("DOMContentLoaded", () => {
       : `<svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>`;
   }
 
-  // --- Mobile Navigation Toggle ---
+  // --- Mobile Drawer Controller ---
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const mobileDrawer = document.getElementById("mobileNavDrawer");
   if (mobileMenuBtn && mobileDrawer) {
     mobileMenuBtn.addEventListener("click", () => {
       mobileDrawer.classList.toggle("hidden");
     });
-    // Close drawer when link clicked
     mobileDrawer.querySelectorAll("a").forEach(a => {
       a.addEventListener("click", () => mobileDrawer.classList.add("hidden"));
     });
   }
 
-  // --- Render 30 Days Action Checklist ---
+  // --- Global Progress Calculation ---
+  function updateGlobalProgress() {
+    let totalItems = 0;
+    let completedItems = 0;
+
+    // Count first 30 days checklist
+    data.first30Days.forEach(item => {
+      totalItems++;
+      if (savedState.checklist[item.id]) completedItems++;
+    });
+
+    // Count all topics across phases
+    data.phases.forEach(phase => {
+      if (phase.topics) {
+        phase.topics.forEach(t => {
+          totalItems++;
+          if (savedState.topics[t.id]) completedItems++;
+        });
+      }
+    });
+
+    const percent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
+
+    const navFill = document.getElementById("navProgressFill");
+    const navText = document.getElementById("navProgressText");
+    const heroProgressText = document.getElementById("heroProgressValue");
+
+    if (navFill) navFill.style.width = `${percent}%`;
+    if (navText) navText.textContent = `${percent}%`;
+    if (heroProgressText) heroProgressText.textContent = `${percent}% (${completedItems}/${totalItems})`;
+  }
+
+  updateGlobalProgress();
+
+  // =========================================================================
+  // PAGE: OVERVIEW (overview.html)
+  // =========================================================================
+  const overviewStepperContainer = document.getElementById("overviewStepperContainer");
+  if (overviewStepperContainer) {
+    overviewStepperContainer.innerHTML = data.phases.map(p => `
+      <div class="overview-phase-card">
+        <div class="overview-phase-meta">
+          <span class="overview-phase-num">${p.phaseNumber}</span>
+          <span class="overview-phase-time">${p.timeline}</span>
+          <span class="badge-pill" style="align-self: flex-start; margin-top: 0.35rem;">${p.badge}</span>
+        </div>
+        <div class="overview-phase-content">
+          <h3>${p.title}</h3>
+          <p>${p.summary}</p>
+        </div>
+        <div class="overview-phase-action">
+          <a href="roadmap.html#phase-card-${p.id}" class="btn btn-outline" style="font-size: 0.825rem; padding: 0.5rem 0.9rem;">
+            Full Phase Details
+            <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M5 12h14"></path><path d="m12 5 7 7-7 7"></path></svg>
+          </a>
+        </div>
+      </div>
+    `).join("");
+  }
+
+  // Overview Tracks Snapshot
+  const overviewTracksGrid = document.getElementById("overviewTracksGrid");
+  if (overviewTracksGrid) {
+    overviewTracksGrid.innerHTML = data.specializationTracks.map(track => `
+      <div class="course-basic-card">
+        <div class="basic-card-icon" style="font-size: 1.5rem;">
+          ${getTrackEmoji(track.id)}
+        </div>
+        <h3>${track.name}</h3>
+        <p style="margin-bottom: 0.75rem;">${track.roleOverview}</p>
+        <div style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1rem;">
+          Target: <strong>${track.paidCertTarget.primary}</strong>
+        </div>
+        <a href="roadmap.html#specializations" class="check-link">
+          Explore Track Curriculum →
+        </a>
+      </div>
+    `).join("");
+  }
+
+  // =========================================================================
+  // PAGE: COMPLETE ROADMAP (roadmap.html)
+  // =========================================================================
+
+  // 1. First 30 Days Action Checklist
   const checklistContainer = document.getElementById("checklistContainer");
   if (checklistContainer) {
     checklistContainer.innerHTML = data.first30Days.map(item => {
@@ -95,7 +178,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
   }
 
-  // --- Render Roadmap Phases ---
+  // 2. Full Phases 0 - 8
   const phasesContainer = document.getElementById("phasesContainer");
   if (phasesContainer) {
     phasesContainer.innerHTML = data.phases.map(phase => {
@@ -145,7 +228,7 @@ document.addEventListener("DOMContentLoaded", () => {
                   </div>
                   <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="resource-btn">
                     Access Free Resource
-                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                   </a>
                 </div>
               `).join("")}
@@ -176,7 +259,7 @@ document.addEventListener("DOMContentLoaded", () => {
         honestyMarkup = `
           <div class="honesty-banner" style="margin-top: 1.5rem;">
             <div class="honesty-head">
-              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+              <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><circle cx="12" cy="12" r="10"></circle><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
               ${phase.honestyAlert.title}
             </div>
             <div style="font-size: 0.9rem; color: var(--text-main); white-space: pre-line; line-height: 1.6;">
@@ -244,7 +327,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
             <div class="phase-meta-tags">
               <span class="badge-pill">${phase.badge}</span>
-              <svg class="toggle-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"></polyline></svg>
+              <svg class="toggle-arrow" width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 12 15 18 9"></polyline></svg>
             </div>
           </div>
           <div class="phase-body">
@@ -264,32 +347,28 @@ document.addEventListener("DOMContentLoaded", () => {
     }).join("");
   }
 
-  // --- Accordion Phase Toggle Logic ---
+  // Accordion Toggle
   document.querySelectorAll("[data-toggle-phase]").forEach(header => {
     header.addEventListener("click", () => {
       const card = header.closest(".phase-card");
-      if (card) {
-        card.classList.toggle("collapsed");
-      }
+      if (card) card.classList.toggle("collapsed");
     });
   });
 
   const expandAllBtn = document.getElementById("expandAllPhasesBtn");
   const collapseAllBtn = document.getElementById("collapseAllPhasesBtn");
-
   if (expandAllBtn) {
     expandAllBtn.addEventListener("click", () => {
       document.querySelectorAll(".phase-card").forEach(c => c.classList.remove("collapsed"));
     });
   }
-
   if (collapseAllBtn) {
     collapseAllBtn.addEventListener("click", () => {
       document.querySelectorAll(".phase-card").forEach(c => c.classList.add("collapsed"));
     });
   }
 
-  // --- Checkbox Click Handler (Event Delegation) ---
+  // Checkbox Event Delegation
   document.body.addEventListener("change", (e) => {
     if (e.target.matches("input[type='checkbox'].custom-checkbox")) {
       const type = e.target.getAttribute("data-type");
@@ -310,11 +389,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- Specialization Explorer Logic ---
+  // 3. Specialization Explorer
   const trackTabsContainer = document.getElementById("trackTabsContainer");
   const trackDetailsContainer = document.getElementById("trackDetailsContainer");
-
   let activeTrackId = localStorage.getItem(STORAGE_KEY_TRACK) || "blue-team";
+
+  function getTrackEmoji(id) {
+    switch(id) {
+      case "blue-team": return "🛡️";
+      case "red-team": return "⚔️";
+      case "cloud-security": return "☁️";
+      case "grc": return "📋";
+      case "dfir": return "🔍";
+      default: return "🎯";
+    }
+  }
 
   function renderTrackTabs() {
     if (!trackTabsContainer) return;
@@ -336,17 +425,6 @@ document.addEventListener("DOMContentLoaded", () => {
         renderTrackDetails();
       });
     });
-  }
-
-  function getTrackEmoji(id) {
-    switch(id) {
-      case "blue-team": return "🛡️";
-      case "red-team": return "⚔️";
-      case "cloud-security": return "☁️";
-      case "grc": return "📋";
-      case "dfir": return "🔍";
-      default: return "🎯";
-    }
   }
 
   function renderTrackDetails() {
@@ -393,7 +471,7 @@ document.addEventListener("DOMContentLoaded", () => {
         <div class="track-right-col">
           <div class="card-inner-box">
             <h4>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
               Target Certification Progression:
             </h4>
             <div style="font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 0.4rem;">
@@ -406,7 +484,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
           <div class="card-inner-box">
             <h4>
-              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
               Curated Free Labs & Training:
             </h4>
             <div>
@@ -429,7 +507,7 @@ document.addEventListener("DOMContentLoaded", () => {
   renderTrackTabs();
   renderTrackDetails();
 
-  // --- Render Certifications Directory ---
+  // 4. Certifications Directory
   const certsContainer = document.getElementById("certsContainer");
   const certFilterBtns = document.querySelectorAll("[data-cert-filter]");
   const certSearchInput = document.getElementById("certSearchInput");
@@ -438,7 +516,6 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeCertFilter = "all";
   let certSearchQuery = "";
 
-  // Render Expired Certs Banner
   if (expiredGrid) {
     expiredGrid.innerHTML = data.expiredAlerts.map(ex => `
       <div class="expired-item">
@@ -453,13 +530,11 @@ document.addEventListener("DOMContentLoaded", () => {
     if (!certsContainer) return;
 
     const filtered = data.certifications.filter(c => {
-      // Filter by category
       let matchesFilter = true;
       if (activeCertFilter === "free") matchesFilter = c.isFree === true;
       else if (activeCertFilter === "training-only") matchesFilter = c.category === "Free Training, Paid Exam";
       else if (activeCertFilter === "paid") matchesFilter = c.isFree === false;
 
-      // Filter by search
       let matchesSearch = true;
       if (certSearchQuery.trim()) {
         const q = certSearchQuery.toLowerCase();
@@ -467,7 +542,6 @@ document.addEventListener("DOMContentLoaded", () => {
                         c.issuer.toLowerCase().includes(q) ||
                         c.description.toLowerCase().includes(q);
       }
-
       return matchesFilter && matchesSearch;
     });
 
@@ -522,7 +596,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
   renderCertifications();
 
-  // --- Render Month by Month Matrix ---
+  // 5. Month by Month Schedule Matrix (shared by Overview and/or Roadmap)
   const monthTableBody = document.getElementById("monthTableBody");
   if (monthTableBody) {
     monthTableBody.innerHTML = data.monthSummary.map(row => `
@@ -533,7 +607,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
-  // --- Render Top Mistakes to Avoid ---
+  // 6. Common Mistakes to Avoid (shared by Overview and/or Roadmap)
   const mistakesContainer = document.getElementById("mistakesContainer");
   if (mistakesContainer) {
     mistakesContainer.innerHTML = data.mistakesToAvoid.map(m => `
@@ -554,7 +628,7 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
-  // --- Render YouTube Creators Showcase ---
+  // 7. YouTube Mentors Showcase
   const creatorsContainer = document.getElementById("creatorsContainer");
   if (creatorsContainer) {
     creatorsContainer.innerHTML = data.creators.map(c => `
@@ -575,49 +649,13 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
-  // --- Progress Calculation Engine ---
-  function updateGlobalProgress() {
-    let totalItems = 0;
-    let completedItems = 0;
-
-    // Count first 30 days checklist
-    data.first30Days.forEach(item => {
-      totalItems++;
-      if (savedState.checklist[item.id]) completedItems++;
-    });
-
-    // Count all topics across phases
-    data.phases.forEach(phase => {
-      if (phase.topics) {
-        phase.topics.forEach(t => {
-          totalItems++;
-          if (savedState.topics[t.id]) completedItems++;
-        });
-      }
-    });
-
-    const percent = totalItems > 0 ? Math.round((completedItems / totalItems) * 100) : 0;
-
-    // Update Nav progress bar & label
-    const navFill = document.getElementById("navProgressFill");
-    const navText = document.getElementById("navProgressText");
-    const heroProgressText = document.getElementById("heroProgressValue");
-
-    if (navFill) navFill.style.width = `${percent}%`;
-    if (navText) navText.textContent = `${percent}%`;
-    if (heroProgressText) heroProgressText.textContent = `${percent}% (${completedItems}/${totalItems})`;
-  }
-
-  updateGlobalProgress();
-
-  // --- Reset Progress Button ---
+  // Reset Progress Button
   const resetBtn = document.getElementById("resetProgressBtn");
   if (resetBtn) {
     resetBtn.addEventListener("click", () => {
       if (confirm("Are you sure you want to reset your checklist progress? This cannot be undone.")) {
         savedState = { checklist: {}, topics: {} };
         saveState();
-        // Uncheck all boxes in UI
         document.querySelectorAll("input[type='checkbox'].custom-checkbox").forEach(box => {
           box.checked = false;
         });
@@ -628,15 +666,13 @@ document.addEventListener("DOMContentLoaded", () => {
     });
   }
 
-  // --- Print / Export PDF Handler ---
+  // Print / PDF Button
   const printBtn = document.getElementById("printRoadmapBtn");
   if (printBtn) {
-    printBtn.addEventListener("click", () => {
-      window.print();
-    });
+    printBtn.addEventListener("click", () => window.print());
   }
 
-  // --- Back to Top Controller ---
+  // Back to Top Button
   const backToTopBtn = document.getElementById("backToTopBtn");
   if (backToTopBtn) {
     window.addEventListener("scroll", () => {
