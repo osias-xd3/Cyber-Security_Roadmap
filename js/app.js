@@ -225,6 +225,7 @@ document.addEventListener("DOMContentLoaded", () => {
               ${phase.topics.map(t => {
                 const isTopicDone = !!(savedState.topics && savedState.topics[t.id]);
                 const hasResources = t.resources && t.resources.length > 0;
+                const isDefaultOpen = (phase.id === 0);
                 
                 return `
                   <div class="topic-row ${isTopicDone ? "done" : ""}" id="topic-row-${t.id}">
@@ -237,21 +238,26 @@ document.addEventListener("DOMContentLoaded", () => {
                     </div>
 
                     ${hasResources ? `
-                      <button class="topic-res-toggle" data-toggle-res="${t.id}" aria-expanded="false">
-                        <span>📚 View Resources (${t.resources.length})</span>
+                      <button class="topic-res-toggle ${isDefaultOpen ? "expanded" : ""}" data-toggle-res="${t.id}" data-count="${t.resources.length}" aria-expanded="${isDefaultOpen ? "true" : "false"}">
+                        <span>${isDefaultOpen ? `▲ Hide Resources (${t.resources.length})` : `📚 View Resources (${t.resources.length})`}</span>
                         <svg class="toggle-icon" width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
                       </button>
 
-                      <div class="topic-res-drawer" id="res-drawer-${t.id}">
+                      <div class="topic-res-drawer ${isDefaultOpen ? "open" : ""}" id="res-drawer-${t.id}">
                         ${t.resources.map(r => `
                           <div class="topic-res-item">
                             <div class="topic-res-item-left">
-                              <span class="topic-res-name">${r.name} <small style="color: var(--accent-emerald); font-family: var(--font-mono);">[${r.type}]</small></span>
+                              <div class="topic-res-title-row">
+                                <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="topic-res-title-link">
+                                  ${r.name}
+                                </a>
+                                <span class="topic-res-type-badge">${r.type}</span>
+                              </div>
                               <span class="topic-res-desc">${r.desc}</span>
                             </div>
                             <a href="${r.url}" target="_blank" rel="noopener noreferrer" class="topic-res-link">
-                              Open Link
-                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                              <span>Open Link</span>
+                              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                             </a>
                           </div>
                         `).join("")}
@@ -382,15 +388,42 @@ document.addEventListener("DOMContentLoaded", () => {
       btn.addEventListener("click", (e) => {
         e.stopPropagation();
         const topicId = btn.getAttribute("data-toggle-res");
+        const count = btn.getAttribute("data-count") || "";
         const drawer = document.getElementById(`res-drawer-${topicId}`);
         if (drawer) {
           const isOpen = drawer.classList.contains("open");
           drawer.classList.toggle("open", !isOpen);
           btn.classList.toggle("expanded", !isOpen);
-          btn.setAttribute("aria-expanded", !isOpen);
+          btn.setAttribute("aria-expanded", String(!isOpen));
+          const span = btn.querySelector("span");
+          if (span) {
+            span.textContent = !isOpen ? `▲ Hide Resources (${count})` : `📚 View Resources (${count})`;
+          }
         }
       });
     });
+
+    // Master Toggle All Resources Button
+    const toggleAllResourcesBtn = document.getElementById("toggleAllResourcesBtn");
+    if (toggleAllResourcesBtn) {
+      let allResourcesOpen = false;
+      toggleAllResourcesBtn.addEventListener("click", () => {
+        allResourcesOpen = !allResourcesOpen;
+        document.querySelectorAll(".topic-res-drawer").forEach(drawer => {
+          drawer.classList.toggle("open", allResourcesOpen);
+        });
+        document.querySelectorAll("[data-toggle-res]").forEach(btn => {
+          btn.classList.toggle("expanded", allResourcesOpen);
+          btn.setAttribute("aria-expanded", String(allResourcesOpen));
+          const count = btn.getAttribute("data-count") || "";
+          const span = btn.querySelector("span");
+          if (span) {
+            span.textContent = allResourcesOpen ? `▲ Hide Resources (${count})` : `📚 View Resources (${count})`;
+          }
+        });
+        toggleAllResourcesBtn.textContent = allResourcesOpen ? "▲ Collapse All Resources" : "📚 Expand All Resources";
+      });
+    }
   }
 
   // Checkbox Event Delegation for Topics
@@ -410,8 +443,32 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   });
 
-  // --- Sidebar ScrollSpy for Roadmap Page ---
+  // --- Sidebar ScrollSpy & Mobile Toggle for Roadmap Page ---
   const sidebarNavItems = document.querySelectorAll(".sidebar-nav-item");
+  const sidebarHeadingBtn = document.getElementById("sidebarHeadingBtn");
+  const sidebarNavList = document.getElementById("sidebarNavList");
+
+  if (sidebarHeadingBtn && sidebarNavList) {
+    sidebarHeadingBtn.addEventListener("click", () => {
+      if (window.innerWidth <= 992) {
+        const isOpen = sidebarNavList.classList.contains("mobile-open");
+        sidebarNavList.classList.toggle("mobile-open", !isOpen);
+        sidebarHeadingBtn.classList.toggle("expanded", !isOpen);
+        sidebarHeadingBtn.setAttribute("aria-expanded", String(!isOpen));
+      }
+    });
+
+    sidebarNavList.querySelectorAll(".sidebar-nav-item").forEach(item => {
+      item.addEventListener("click", () => {
+        if (window.innerWidth <= 992) {
+          sidebarNavList.classList.remove("mobile-open");
+          sidebarHeadingBtn.classList.remove("expanded");
+          sidebarHeadingBtn.setAttribute("aria-expanded", "false");
+        }
+      });
+    });
+  }
+
   if (sidebarNavItems.length > 0) {
     const targets = Array.from(sidebarNavItems)
       .map(item => {
@@ -439,45 +496,6 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.remove("active");
           }
         });
-
-        const mobileIndexPills = document.querySelectorAll(".mobile-index-pill");
-        mobileIndexPills.forEach(pill => {
-          const href = pill.getAttribute("href");
-          if (href === `#${currentId}`) {
-            pill.classList.add("active");
-          } else {
-            pill.classList.remove("active");
-          }
-        });
-      }
-    });
-  }
-
-  // --- Mobile Course Index Bar Controller (Roadmap Page) ---
-  const mobileIndexToggleBtn = document.getElementById("mobileIndexToggleBtn");
-  const mobileIndexDropdown = document.getElementById("mobileIndexDropdown");
-  if (mobileIndexToggleBtn && mobileIndexDropdown) {
-    mobileIndexToggleBtn.addEventListener("click", (e) => {
-      e.stopPropagation();
-      const isOpen = mobileIndexDropdown.classList.contains("open");
-      mobileIndexDropdown.classList.toggle("open", !isOpen);
-      mobileIndexToggleBtn.classList.toggle("expanded", !isOpen);
-      mobileIndexToggleBtn.setAttribute("aria-expanded", String(!isOpen));
-    });
-
-    mobileIndexDropdown.querySelectorAll(".mobile-index-pill").forEach(pill => {
-      pill.addEventListener("click", () => {
-        mobileIndexDropdown.classList.remove("open");
-        mobileIndexToggleBtn.classList.remove("expanded");
-        mobileIndexToggleBtn.setAttribute("aria-expanded", "false");
-      });
-    });
-
-    document.addEventListener("click", (e) => {
-      if (!mobileIndexDropdown.contains(e.target) && !mobileIndexToggleBtn.contains(e.target)) {
-        mobileIndexDropdown.classList.remove("open");
-        mobileIndexToggleBtn.classList.remove("expanded");
-        mobileIndexToggleBtn.setAttribute("aria-expanded", "false");
       }
     });
   }

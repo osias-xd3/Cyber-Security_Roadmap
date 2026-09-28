@@ -94,14 +94,17 @@
         </p>
 
         <div class="hero-cta-group">
-          <button class="btn btn-outline" id="expandAllPhasesBtn" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
+          <button class="btn btn-outline" id="expandAllPhasesBtn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
             Expand All Phases
           </button>
-          <button class="btn btn-outline" id="collapseAllPhasesBtn" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
+          <button class="btn btn-outline" id="collapseAllPhasesBtn" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
             Collapse All Phases
           </button>
-          <button class="btn btn-outline" id="printRoadmapBtn" title="Export or Print Roadmap as PDF" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
-            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <button class="btn btn-primary" id="toggleAllResourcesBtn" style="font-size: 0.85rem; padding: 0.5rem 1.1rem;">
+            📚 Expand All Resources
+          </button>
+          <button class="btn btn-outline" id="printRoadmapBtn" title="Export or Print Roadmap as PDF" style="font-size: 0.85rem; padding: 0.5rem 1rem;">
+            <svg width="15" height="15" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             Print / PDF
           </button>
         </div>
@@ -110,41 +113,18 @@
 
     <!-- Main Content Area with Sticky Left Sidebar Index -->
     <div class="container">
-      
-      <!-- Sticky Mobile Course Index Quick Bar (Visible <= 992px) -->
-      <div class="mobile-index-bar">
-        <button class="mobile-index-toggle" id="mobileIndexToggleBtn" aria-expanded="false" aria-controls="mobileIndexDropdown">
-          <span style="display: flex; align-items: center; gap: 0.5rem;">
-            <span>📑</span>
-            <span>Course Index (Quick Jump)</span>
-          </span>
-          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-        </button>
-
-        <div class="mobile-index-dropdown" id="mobileIndexDropdown">
-          <a href="#phase-card-0" class="mobile-index-pill"><span>Phase 0: Setup</span><small>Wk 1</small></a>
-          <a href="#phase-card-1" class="mobile-index-pill"><span>Phase 1: IT & Network</span><small>Mo 1-3</small></a>
-          <a href="#phase-card-2" class="mobile-index-pill"><span>Phase 2: Core Concepts</span><small>Mo 2-4</small></a>
-          <a href="#phase-card-3" class="mobile-index-pill"><span>Phase 3: Hands-On Labs</span><small>Ongoing</small></a>
-          <a href="#phase-card-4" class="mobile-index-pill"><span>Phase 4: Specialization</span><small>Mo 4-6</small></a>
-          <a href="#phase-card-5" class="mobile-index-pill"><span>Phase 5: Free Certs</span><small>Mo 2-6</small></a>
-          <a href="#phase-card-6" class="mobile-index-pill"><span>Phase 6: CompTIA Sec+</span><small>Mo 5-8</small></a>
-          <a href="#phase-card-7" class="mobile-index-pill"><span>Phase 7: Go Deeper</span><small>Mo 6-12</small></a>
-          <a href="#phase-card-8" class="mobile-index-pill"><span>Phase 8: Portfolio Lab</span><small>Mo 3+</small></a>
-          <a href="#specializations" class="mobile-index-pill"><span>🎯 5 Career Tracks</span></a>
-          <a href="#certifications" class="mobile-index-pill"><span>📜 Certifications</span></a>
-          <a href="#creators" class="mobile-index-pill"><span>📺 YouTube Mentors</span></a>
-        </div>
-      </div>
-
       <div class="roadmap-layout">
         
         <!-- Left Sidebar Index (Table of Contents) -->
         <aside class="roadmap-sidebar" id="roadmapSidebar">
-          <div class="sidebar-heading">
-            <span>Course Index</span>
-            <span style="font-size: 0.65rem; color: var(--text-subtle);">9 Phases</span>
-          </div>
+          <button class="sidebar-heading" id="sidebarHeadingBtn" aria-expanded="false" aria-controls="sidebarNavList">
+            <span style="display: flex; align-items: center; gap: 0.4rem;">
+              <span>📑</span>
+              <span>Course Index</span>
+            </span>
+            <span class="sidebar-count-badge">9 Phases</span>
+            <svg class="sidebar-chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+          </button>
 
           <nav class="sidebar-nav-list" id="sidebarNavList" aria-label="Roadmap Sections">
             <a href="#phase-card-0" class="sidebar-nav-item active" data-nav-target="phase-card-0">
