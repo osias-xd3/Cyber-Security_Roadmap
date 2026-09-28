@@ -677,7 +677,43 @@ const ROADMAP_DATA = {
                 "desc": "Free realistic enterprise SOC attack datasets. Write SPL search queries to trace attacker lateral movement from initial breach to data exfiltration."
             }
         ],
-        "proTip": "Build a home SIEM (Splunk Free or Elastic) ingesting Sysmon logs from a Windows VM. This single documented portfolio item beats a stack of generic multiple-choice certs."
+        "proTip": "Build a home SIEM (Splunk Free or Elastic) ingesting Sysmon logs from a Windows VM. This single documented portfolio item beats a stack of generic multiple-choice certs.",
+        "paidCertTarget": {
+            "primary": "Blue Team Level 1 (BTL1) (~00) \u2192 Microsoft SC-200 (65)",
+            "desc": "24-hour practical incident response exam with live evidence analysis. Immensely respected by SOC team leads, followed by Microsoft Sentinel cloud specialization."
+        },
+        "freeTraining": [
+            {
+                "name": "LetsDefend Free Tier SOC Simulator",
+                "url": "https://letsdefend.io",
+                "desc": "Interactive incident triage, alert investigation, and malicious log analysis in a realistic SOC environment."
+            },
+            {
+                "name": "CyberDefenders Blue Team Challenges",
+                "url": "https://cyberdefenders.org",
+                "desc": "Hands-on threat hunting and forensic artifact investigations on real memory dumps and PCAPs."
+            },
+            {
+                "name": "Splunk Free Enterprise Training & SIEM",
+                "url": "https://www.splunk.com/en_us/training.html",
+                "desc": "Official training on enterprise SIEM queries, Search Processing Language (SPL), and 500MB/day free lab ingestion."
+            },
+            {
+                "name": "Elastic (ELK) Security Guides",
+                "url": "https://www.elastic.co/training",
+                "desc": "Free official guides on ingesting Sysmon logs, building detection rules, and visualizing alert dashboards."
+            },
+            {
+                "name": "Blue Team Labs Online (BTLO)",
+                "url": "https://blueteamlabs.online",
+                "desc": "Gamified defensive security investigations focusing on endpoint artifacts, phishing analysis, and packet inspection."
+            },
+            {
+                "name": "Centri Blue Team Junior Analyst (BTJA)",
+                "url": "https://centri.org",
+                "desc": "Free foundation pathway utilizing Wireshark, CyberChef, Redline, and memory analysis."
+            }
+        ]
     },
     {
         "id": "red-team",
@@ -795,7 +831,43 @@ const ROADMAP_DATA = {
                 "desc": "Over 200 interactive labs created by the creators of Burp Suite. Practice SQLi, Blind XSS, CSRF, SSRF, and JWT tampering."
             }
         ],
-        "proTip": "Don't rush to OSCP+ immediately. Master web exploitation on PortSwigger Academy and Active Directory enumeration first. Write clean, professional vulnerability reports for your GitHub."
+        "proTip": "Don't rush to OSCP+ immediately. Master web exploitation on PortSwigger Academy and Active Directory enumeration first. Write clean, professional vulnerability reports for your GitHub.",
+        "paidCertTarget": {
+            "primary": "eJPT (49) \u2192 TCM PNPT (99) \u2192 OffSec OSCP+ (,749)",
+            "desc": "Start with eJPT for practical baseline pentesting, advance to PNPT for realistic Active Directory exploitation and report writing, and target OSCP+ 2\u20133 years in."
+        },
+        "freeTraining": [
+            {
+                "name": "PortSwigger Web Security Academy",
+                "url": "https://portswigger.net/web-security",
+                "desc": "100% free, gold-standard interactive web exploitation labs covering SQLi, XSS, CSRF, SSRF, and JWT attacks."
+            },
+            {
+                "name": "TryHackMe (Pre-Security & Complete Beginner)",
+                "url": "https://tryhackme.com",
+                "desc": "Structured browser-based rooms covering network enumeration, Linux fundamentals, and beginner privilege escalation."
+            },
+            {
+                "name": "Hack The Box Academy (Tier 0 Free)",
+                "url": "https://academy.hackthebox.com",
+                "desc": "Deep technical modules on Linux/Windows fundamentals, Nmap scanning, web requests, and command line tools."
+            },
+            {
+                "name": "OverTheWire (Bandit & Natas)",
+                "url": "https://overthewire.org",
+                "desc": "Gamified wargames teaching Linux shell navigation, SSH tunneling, file permissions, and web server vulnerabilities."
+            },
+            {
+                "name": "GTFOBins PrivEsc Library",
+                "url": "https://gtfobins.github.io",
+                "desc": "Curated open-source guide of Unix binaries that can be exploited to bypass local security restrictions."
+            },
+            {
+                "name": "TCM Security Practical Ethical Hacking Free Guides",
+                "url": "https://academy.tcm-sec.com",
+                "desc": "Methodical internal and external network pentesting methodology and Active Directory lab building."
+            }
+        ]
     },
     {
         "id": "cloud-security",
@@ -902,7 +974,43 @@ const ROADMAP_DATA = {
                 "desc": "Gamified 3D role-playing learning adventure where you solve real cloud security architecture puzzles to protect virtual companies."
             }
         ],
-        "proTip": "Learn Infrastructure as Code (Terraform) and Identity & Access Management (IAM) policies. Misconfigured permissions and exposed secrets are the #1 root cause of cloud breaches."
+        "proTip": "Learn Infrastructure as Code (Terraform) and Identity & Access Management (IAM) policies. Misconfigured permissions and exposed secrets are the #1 root cause of cloud breaches.",
+        "paidCertTarget": {
+            "primary": "AWS Certified Cloud Practitioner (00) or Azure AZ-900 (9) \u2192 AWS Security Specialty (00)",
+            "desc": "Affordable foundational validation that can be learned completely free through official vendor documentation, leading to enterprise cloud security engineering roles."
+        },
+        "freeTraining": [
+            {
+                "name": "AWS Skill Builder (Cloud Practitioner Essentials)",
+                "url": "https://skillbuilder.aws",
+                "desc": "Official free interactive video course covering foundational AWS compute, storage, IAM, and networking."
+            },
+            {
+                "name": "Microsoft Learn AZ-900 & SC-900 Paths",
+                "url": "https://learn.microsoft.com/en-us/credentials/certifications/azure-fundamentals/",
+                "desc": "Free comprehensive interactive sandbox labs and documentation for Azure security, compliance, and identity."
+            },
+            {
+                "name": "Google Cloud Skills Boost (Free Tier)",
+                "url": "https://www.cloudskillsboost.google",
+                "desc": "Free introductory hands-on labs and security skill badges covering GCP IAM, VPC networks, and Cloud Armor."
+            },
+            {
+                "name": "Cloud Security Alliance (CSA) Security Guidance",
+                "url": "https://cloudsecurityalliance.org/research/guidance/",
+                "desc": "Authoritative free architectural blueprint for domain-by-domain enterprise cloud governance and security controls."
+            },
+            {
+                "name": "Terraform Tutorials by HashiCorp",
+                "url": "https://developer.hashicorp.com/terraform/tutorials",
+                "desc": "Learn Infrastructure as Code (IaC) to automate and enforce reproducible secure cloud configurations."
+            },
+            {
+                "name": "CloudFox / Bishop Fox Open Source Cloud Security",
+                "url": "https://github.com/BishopFox/cloudfox",
+                "desc": "Situational awareness and discovery engine to identify security misconfigurations in AWS and Azure environments."
+            }
+        ]
     },
     {
         "id": "grc",
@@ -1001,7 +1109,43 @@ const ROADMAP_DATA = {
                 "desc": "Learn how modern GRC teams automate compliance checks by running OpenSCAP benchmarks and Trivy misconfiguration scans against Linux VMs."
             }
         ],
-        "proTip": "Translate technical jargon into business impact. GRC professionals excel when they explain risk in terms executives care about: dollars, reputation, regulatory penalties, and business continuity."
+        "proTip": "Translate technical jargon into business impact. GRC professionals excel when they explain risk in terms executives care about: dollars, reputation, regulatory penalties, and business continuity.",
+        "paidCertTarget": {
+            "primary": "ISACA CISA or CRISC (75\u201360) / CompTIA Security+ (39)",
+            "desc": "Security+ provides baseline technical literacy, followed by ISACA CISA or CRISC as the premier benchmarks for IT audit, enterprise risk assessment, and senior leadership."
+        },
+        "freeTraining": [
+            {
+                "name": "NIST Cybersecurity Framework (CSF 2.0) Official Guides",
+                "url": "https://www.nist.gov/cyberframework",
+                "desc": "Authoritative free PDFs and reference toolkits covering the Govern, Identify, Protect, Detect, Respond, and Recover core functions."
+            },
+            {
+                "name": "NIST SP 800-53 Rev 5 Catalog of Security & Privacy Controls",
+                "url": "https://csrc.nist.gov/publications/detail/sp/800-53/rev-5/final",
+                "desc": "The definitive security control catalog benchmark for federal agencies, defense industrial base, and global enterprises."
+            },
+            {
+                "name": "Center for Internet Security (CIS) Critical Security Controls v8",
+                "url": "https://www.cisecurity.org/controls",
+                "desc": "Prioritized set of 18 critical cybersecurity safeguards designed to stop the most common and pervasive cyber-attacks."
+            },
+            {
+                "name": "ISACA Governance & Risk Whitepapers",
+                "url": "https://www.isaca.org",
+                "desc": "Free industry guides on enterprise IT governance, risk appetite frameworks, and internal audit methodologies."
+            },
+            {
+                "name": "ComplianceForge Cybersecurity Policy Templates",
+                "url": "https://complianceforge.com",
+                "desc": "Free downloadable samples of organizational cybersecurity policies and standard operating procedures (SOPs)."
+            },
+            {
+                "name": "AuditScripts Information Security Assessment Tools",
+                "url": "https://www.auditscripts.com",
+                "desc": "Free Excel-based scoring rubrics and gap assessment tools for NIST CSF and CIS Controls."
+            }
+        ]
     },
     {
         "id": "dfir",
@@ -1101,7 +1245,43 @@ const ROADMAP_DATA = {
                 "desc": "A set of 6 progressive memory analysis CTF challenges designed to teach the use of Volatility 3 for detecting malicious DLL injections and stealthy processes."
             }
         ],
-        "proTip": "Learn how to image drives and dump RAM without contaminating evidence. Master timeline reconstruction using tools like Plaso / log2timeline and forensic artifact parsers like KAPE."
+        "proTip": "Learn how to image drives and dump RAM without contaminating evidence. Master timeline reconstruction using tools like Plaso / log2timeline and forensic artifact parsers like KAPE.",
+        "paidCertTarget": {
+            "primary": "Centri BTL1 or CyberDefenders CCDL1 (~00) \u2192 GIAC GCIH / GCFA (Employer sponsored)",
+            "desc": "Hands-on practical exams proving chain-of-custody, disk imaging, memory forensics, and timeline reconstruction under pressure."
+        },
+        "freeTraining": [
+            {
+                "name": "CyberDefenders DFIR Practice Labs",
+                "url": "https://cyberdefenders.org",
+                "desc": "Hands-on investigation challenges using real memory dumps, packet captures, and compromised hard drive images."
+            },
+            {
+                "name": "SANS DFIR Reading Room & Cheat Sheets",
+                "url": "https://www.sans.org/white-papers/",
+                "desc": "Free technical whitepapers, memory analysis cheat sheets, and artifact location guides written by top forensic investigators."
+            },
+            {
+                "name": "Autopsy Digital Forensics User Guide & Video Tutorials",
+                "url": "https://www.autopsy.com",
+                "desc": "Free documentation and video training for the world's leading open-source digital forensics hard drive analysis platform."
+            },
+            {
+                "name": "Volatility Foundation Memory Forensics Wiki",
+                "url": "https://github.com/volatilityfoundation/volatility/wiki/Command-Reference",
+                "desc": "Official command syntax and triage workflow reference for analyzing volatile memory and detecting rootkits."
+            },
+            {
+                "name": "Eric Zimmerman's Windows Forensic Tools (KAPE)",
+                "url": "https://ericzimmerman.github.io/",
+                "desc": "Free industry-standard forensic tools for registry analysis, JumpLists, shellbags, and rapid artifact collection."
+            },
+            {
+                "name": "Magnet Forensics Free CTF & Resource Library",
+                "url": "https://www.magnetforensics.com/resources/",
+                "desc": "Interactive forensic case walkthroughs and recorded webinars dissecting real breach scenarios."
+            }
+        ]
     }
 ],
 
@@ -2192,41 +2372,85 @@ const ROADMAP_DATA = {
 ]
   },
 
-    creators: [
+  expiredAlerts: [
+    {
+      name: "ISC2 Certified in Cybersecurity (CC) Free Exam",
+      status: "Closed / Ended May 20, 2026",
+      details: "The 'One Million Certified in Cybersecurity' free exam voucher campaign is officially closed. Candidates must now pay standard exam fees ($199) and annual membership dues ($50)."
+    },
+    {
+      name: "EC-Council Essentials Series Free Exams",
+      status: "Discontinued in 2026",
+      details: "Network Defense Essentials (NDE), Ethical Hacking Essentials (EHE), and Digital Forensics Essentials (DFE) no longer offer free certification vouchers. Course material remains viewable, but official exams require paid purchase."
+    },
+    {
+      name: "Palo Alto Networks PCCET Free Vouchers",
+      status: "Program Ended",
+      details: "Older academic promo codes circulating online for PCCET have expired. The exam is now retired in favor of the specialized PCNSA track ($175)."
+    },
+    {
+      name: "MITRE ATT&CK Defender (MAD) Free Vouchers",
+      status: "Transitioned to Cybrary Paid",
+      details: "MAD training and certification badges moved to Cybrary's subscription platform and are no longer issued for free directly by MITRE Engenuity."
+    }
+  ],
+
+  creators: [
     {
       name: "NetworkChuck",
       focus: "Networking, Linux, Cloud & Security Fundamentals",
       style: "High energy, visual, hands-on with coffee, incredibly beginner-friendly",
       url: "https://www.youtube.com/@NetworkChuck",
-      bestFor: "Demystifying subnets, TCP/IP, Linux command line, and coffee-fueled labs."
+      bestFor: "Demystifying subnets, TCP/IP, Linux command line, Docker containers, and coffee-fueled home labs."
     },
     {
       name: "John Hammond",
       focus: "CTF Walkthroughs, Malware Analysis & Threat Intel",
       style: "Deeply technical yet clear explanations, daily security news, and live demonstrations",
       url: "https://www.youtube.com/@_JohnHammond",
-      bestFor: "Watching how real hackers analyze malware, inspect obfuscated code, and solve CTF rooms."
+      bestFor: "Watching how real security researchers analyze live malware, inspect obfuscated scripts, and solve CTF challenges."
     },
     {
       name: "The Cyber Mentor (Heath Adams)",
       focus: "Practical Ethical Hacking & Career Roadmaps",
-      style: "No-BS, pragmatic advice from a seasoned pentesting company owner",
+      style: "No-BS, pragmatic advice from a seasoned pentesting company founder and trainer",
       url: "https://www.youtube.com/@TCMSecurityAcademy",
-      bestFor: "12-hour practical ethical hacking courses and straight talk on breaking into the industry."
+      bestFor: "12-hour practical ethical hacking courses, Active Directory labs, and straight talk on breaking into the cybersecurity industry."
     },
     {
       name: "IppSec",
       focus: "Deep Hack The Box Machine Walkthroughs",
-      style: "Methodical, quiet, masterclass-level breakdown of machine exploitation",
+      style: "Methodical, quiet, masterclass-level breakdown of machine exploitation and privilege escalation",
       url: "https://www.youtube.com/@ippsec",
-      bestFor: "Searching specific attack techniques and watching an expert methodically exploit boxes."
+      bestFor: "Searching specific attack techniques, CVE exploitation, and watching an expert methodically root Linux and Windows boxes."
     },
     {
       name: "David Bombal",
-      focus: "Networking, Python for Cyber, Wireshark, & Hardware Hacking",
-      style: "In-depth technical interviews, Packet Tracer labs, and software defined radio",
+      focus: "Networking, Python for Cyber, Wireshark & Hardware Hacking",
+      style: "In-depth technical interviews, Packet Tracer labs, and software defined radio demonstrations",
       url: "https://www.youtube.com/@DavidBombal",
-      bestFor: "Deep dives with protocol creators, Wireshark packet inspections, and ethical hacking demos."
+      bestFor: "Deep dives with protocol creators, Wireshark packet captures, network automation, and ethical hacking demos."
+    },
+    {
+      name: "Professor Messer",
+      focus: "CompTIA Certification Training (A+, Network+, Security+, CySA+)",
+      style: "Bite-sized, structured, modular video courses matching official CompTIA objectives 1-for-1",
+      url: "https://www.youtube.com/@professormesser",
+      bestFor: "100% free comprehensive training for CompTIA Security+ (SY0-701) and Network+ (N10-009) exams."
+    },
+    {
+      name: "LiveOverflow",
+      focus: "Binary Exploitation, Reverse Engineering & Browser Security",
+      style: "Intellectual, low-level technical breakdowns with visual memory diagrams and debugger traces",
+      url: "https://www.youtube.com/@LiveOverflow",
+      bestFor: "Understanding memory corruption, buffer overflows, assembly debugging, and how computer security really works under the hood."
+    },
+    {
+      name: "Simply Cyber (Dr. Gerald Auger)",
+      focus: "Daily Threat Briefings, GRC & Entry-Level Security Careers",
+      style: "Welcoming, community-focused live daily threat intelligence streams and practical GRC roadmaps",
+      url: "https://www.youtube.com/@SimplyCyber",
+      bestFor: "Staying informed on current cyber attacks, landing your first SOC/GRC role, and understanding real-world enterprise risk."
     }
   ],
 
@@ -2273,6 +2497,23 @@ const ROADMAP_DATA = {
     { months: "Months 6–12", focus: "Specialization-specific skills + first affordable paid cert (BTL1, eJPT, AWS/Azure fundamentals)" }
   ]
 };
+
+// Populate backwards-compatible certifications array from certificationsData.allCertifications
+if (ROADMAP_DATA.certificationsData && ROADMAP_DATA.certificationsData.allCertifications) {
+  ROADMAP_DATA.certifications = ROADMAP_DATA.certificationsData.allCertifications.map(c => ({
+    id: c.id,
+    name: c.name,
+    issuer: c.issuer,
+    cost: c.cost,
+    isFree: c.isFree,
+    category: c.category,
+    domain: c.domain,
+    description: c.notes,
+    whyItMatters: c.notes,
+    validity: c.time || "Verified 2026",
+    url: c.url
+  }));
+}
 
 // Export to window for browser usage
 if (typeof window !== "undefined") {

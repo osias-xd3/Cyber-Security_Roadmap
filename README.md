@@ -12,26 +12,25 @@ The website is structured into three clean, focused pages:
 
 1. **Home Page (`index.html`)**:
    - High-impact introduction & course foundations.
-   - Core skill-building philosophy: **Learn → Practice → Prove**.
+1. **Home Page (`index.html`)**:
+   - Course basics, prerequisite clarity, and core philosophies (**Learn → Practice → Prove**).
    - What makes this roadmap unique (zero fluff, real labs, avoiding tutorial hell).
-   - Dedicated **About the Creator** section (creator profile, bio, mission, and social channels).
-   - "First 30 Days" starter teaser.
+   - Dedicated **About the Creator** section (Muhammad Awais, Software Engineering Student at COMSATS Lahore).
+   - Direct gateway launchers to the Master Roadmap and Certifications Hub.
 
-2. **Roadmap Overview (`overview.html`)**:
-   - Executive, high-level summary of the entire journey.
-   - 9-Phase Stepper: concise breakdown of what each phase achieves and how long it takes.
-   - Strategic Month-by-Month Schedule & Cadence.
-   - The 5 Career Tracks At-A-Glance (Blue Team, Red Team, Cloud, GRC, DFIR).
-   - Critical beginner mistakes to avoid.
+2. **Complete Master Curriculum (`roadmap.html`)**:
+   - The exhaustive technical master plan covering every single subtopic across Phases 0–8.
+   - Left sidebar course navigation index with quick-jump links.
+   - In-place expandable topic resource drawers for every domain.
+   - Interactive **Phase 4 Specialization Pathways Explorer** and comprehensive **5 Career Tracks Explorer** (Blue Team, Red Team, Cloud Security, GRC, DFIR) with curated free training labs, certification progression ladders, and gamified challenges.
+   - Curated **YouTube Channels Worth Subscribing To** (NetworkChuck, John Hammond, The Cyber Mentor, IppSec, David Bombal, Professor Messer, LiveOverflow, Simply Cyber).
 
-3. **Complete Master Curriculum (`roadmap.html`)**:
-   - The exhaustive technical master plan covering every single subtopic.
-   - Interactive First 30 Days Action Cockpit with persistent checkboxes.
-   - Deep phase cards (Phases 0 through 8) with verified free course links and readiness milestones.
-   - Interactive **Specialization Tracks Explorer** with detailed day-to-day duties, tool grids, and target certification pathways (BTL1, eJPT, OSCP, AWS/Azure).
-   - **Fact-Checked 2026 Certifications Directory** with real-time search, category filters, and **Honesty Alerts** for expired free voucher programs (ISC2 CC ended May 20, 2026).
-   - Curated YouTube Mentors (NetworkChuck, John Hammond, TCM Security, IppSec, David Bombal).
-   - Print / PDF export support.
+3. **2026 Certifications Hub (`certifications.html`)**:
+   - Comprehensive directory of 62+ credentials with live search, domain filters, and difficulty tier filters.
+   - Top 10 "Worth the Money" shortlist comparison table.
+   - 2026 major syllabus and pricing changes fact-check.
+   - "Not Worth Paying Out-of-Pocket" guidance and study cost minimization strategies.
+   - Official vendor directory.
 
 ---
 
@@ -75,9 +74,9 @@ Then visit [http://localhost:3000](http://localhost:3000) in your browser.
 ## 📁 File Structure
 
 ```
-├── index.html            # Page 1: Home Page (Course Basics & Creator Section)
-├── overview.html         # Page 2: Roadmap Overview (Executive Stepper & Snapshot)
-├── roadmap.html          # Page 3: Complete Master Curriculum (Exhaustive & Interactive)
+├── index.html            # Page 1: Home Page (Course Basics & Creator Profile)
+├── roadmap.html          # Page 2: Complete Master Curriculum (Exhaustive & Interactive)
+├── certifications.html   # Page 3: 2026 Certifications Hub (Directory, Shortlist & Vendor Index)
 ├── vercel.json           # Vercel cleanUrls & security headers configuration
 ├── css/
 │   └── style.css         # Modern cybersecurity design system (Dark/Light/Print)

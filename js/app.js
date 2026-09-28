@@ -137,86 +137,6 @@ document.addEventListener("DOMContentLoaded", () => {
   updateGlobalProgress();
 
   // =========================================================================
-  // PAGE: OVERVIEW (overview.html) - In-Place Expandable Dropdowns
-  // =========================================================================
-  const overviewStepperContainer = document.getElementById("overviewStepperContainer");
-  if (overviewStepperContainer) {
-    overviewStepperContainer.innerHTML = data.phases.map(p => `
-      <div class="overview-phase-card" id="overview-card-${p.id}">
-        <div class="overview-card-header">
-          <div class="overview-phase-meta">
-            <span class="overview-phase-num">${p.phaseNumber}</span>
-            <span class="overview-phase-time">${p.timeline}</span>
-            <span class="badge-pill" style="align-self: flex-start; margin-top: 0.35rem;">${p.badge}</span>
-          </div>
-          <div class="overview-phase-content">
-            <h3>${p.title}</h3>
-            <p>${p.summary}</p>
-          </div>
-          <div>
-            <button class="overview-dropdown-toggle" data-toggle-overview="${p.id}" aria-expanded="false">
-              <span>Basic Overview</span>
-              <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
-            </button>
-          </div>
-        </div>
-
-        <!-- In-Place Drawer with Key Overview Points -->
-        <div class="overview-drawer" id="overview-drawer-${p.id}">
-          <div class="overview-points-list">
-            ${p.overviewPoints && p.overviewPoints.length > 0
-              ? p.overviewPoints.map(pt => `
-                <div class="overview-point-item">
-                  <span style="color: var(--accent-emerald); font-weight: 800;">⚡</span>
-                  <div>${pt}</div>
-                </div>
-              `).join("")
-              : `<div class="overview-point-item"><div>${p.summary}</div></div>`
-            }
-          </div>
-          <div style="margin-top: 0.85rem; padding-left: 0.5rem; font-size: 0.8rem; color: var(--text-subtle);">
-            <strong>Milestone Checkpoint:</strong> ${p.milestone || "Ready to progress"}
-          </div>
-        </div>
-      </div>
-    `).join("");
-
-    // Toggle in-place overview dropdowns
-    document.querySelectorAll("[data-toggle-overview]").forEach(btn => {
-      btn.addEventListener("click", () => {
-        const phaseId = btn.getAttribute("data-toggle-overview");
-        const drawer = document.getElementById(`overview-drawer-${phaseId}`);
-        if (drawer) {
-          const isOpen = drawer.classList.contains("open");
-          drawer.classList.toggle("open", !isOpen);
-          btn.classList.toggle("expanded", !isOpen);
-          btn.setAttribute("aria-expanded", !isOpen);
-        }
-      });
-    });
-  }
-
-  // Overview Tracks Snapshot
-  const overviewTracksGrid = document.getElementById("overviewTracksGrid");
-  if (overviewTracksGrid) {
-    overviewTracksGrid.innerHTML = data.specializationTracks.map(track => `
-      <div class="course-basic-card">
-        <div class="basic-card-icon" style="font-size: 1.5rem;">
-          ${getTrackEmoji(track.id)}
-        </div>
-        <h3>${track.name}</h3>
-        <p style="margin-bottom: 0.75rem;">${track.roleOverview}</p>
-        <div style="font-size: 0.8rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 1rem;">
-          Target: <strong>${track.paidCertTarget.primary}</strong>
-        </div>
-        <div style="font-size: 0.8rem; color: var(--text-subtle);">
-          Market Demand: <span style="color: var(--accent-emerald);">${track.demandInsight}</span>
-        </div>
-      </div>
-    `).join("");
-  }
-
-  // =========================================================================
   // PAGE: COMPLETE ROADMAP (roadmap.html)
   // =========================================================================
 
@@ -458,6 +378,30 @@ document.addEventListener("DOMContentLoaded", () => {
       const track = data.specializationTracks.find(t => t.id === trackId) || data.specializationTracks[0];
       if (!track) return;
 
+      // Curated Free Labs & Training Resources
+      let trainingMarkup = "";
+      if (track.freeTraining && track.freeTraining.length > 0) {
+        trainingMarkup = `
+          <div style="margin: 1.25rem 0 1rem;">
+            <h5 style="font-size: 0.95rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M4 19.5A2.5 2.5 0 0 1 6.5 17H20"></path><path d="M6.5 2H20v20H6.5A2.5 2.5 0 0 1 4 19.5v-15A2.5 2.5 0 0 1 6.5 2z"></path></svg>
+              Curated Free Labs, Courses & Practical Resources:
+            </h5>
+            <div style="display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 0.85rem;">
+              ${track.freeTraining.map(item => `
+                <div class="track-link-item" style="margin-bottom: 0; background: var(--bg-secondary); border: 1px solid var(--border-subtle); border-radius: var(--radius-sm); padding: 0.85rem;">
+                  <a href="${item.url}" target="_blank" rel="noopener noreferrer" style="display: flex; align-items: center; justify-content: space-between; gap: 0.5rem; color: var(--accent-cyan); font-weight: 700; text-decoration: none; font-size: 0.9rem;">
+                    <span>${item.name}</span>
+                    <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </a>
+                  <p style="margin: 0.35rem 0 0; font-size: 0.825rem; color: var(--text-muted); line-height: 1.45;">${item.desc}</p>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
       // Essential Certs Ladder
       let ladderMarkup = "";
       if (track.essentialCertsPath && track.essentialCertsPath.length > 0) {
@@ -543,6 +487,7 @@ document.addEventListener("DOMContentLoaded", () => {
             </div>
           </div>
 
+          ${trainingMarkup}
           ${ladderMarkup}
           ${gamesMarkup}
 
@@ -741,19 +686,22 @@ document.addEventListener("DOMContentLoaded", () => {
         </div>
 
         <div class="track-right-col">
+          ${track.paidCertTarget ? `
           <div class="card-inner-box">
             <h4>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
               Target Certification Progression:
             </h4>
             <div style="font-size: 1.05rem; font-weight: 800; color: var(--accent-cyan); margin-bottom: 0.4rem;">
-              ${track.paidCertTarget.primary}
+              ${track.paidCertTarget.primary || ''}
             </div>
             <p style="font-size: 0.85rem; color: var(--text-muted); line-height: 1.5;">
-              ${track.paidCertTarget.desc}
+              ${track.paidCertTarget.desc || ''}
             </p>
           </div>
+          ` : ""}
 
+          ${track.freeTraining && track.freeTraining.length > 0 ? `
           <div class="card-inner-box">
             <h4>
               <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
@@ -771,6 +719,7 @@ document.addEventListener("DOMContentLoaded", () => {
               `).join("")}
             </div>
           </div>
+          ` : ""}
 
           ${track.essentialCertsPath && track.essentialCertsPath.length > 0 ? `
             <div class="card-inner-box">
@@ -839,7 +788,7 @@ document.addEventListener("DOMContentLoaded", () => {
   let activeCertFilter = "all";
   let certSearchQuery = "";
 
-  if (expiredGrid) {
+  if (expiredGrid && data.expiredAlerts) {
     expiredGrid.innerHTML = data.expiredAlerts.map(ex => `
       <div class="expired-item">
         <div class="expired-name">${ex.name}</div>
@@ -852,18 +801,20 @@ document.addEventListener("DOMContentLoaded", () => {
   function renderCertifications() {
     if (!certsContainer) return;
 
-    const filtered = data.certifications.filter(c => {
+    const certList = data.certifications || (data.certificationsData && data.certificationsData.allCertifications) || [];
+    const filtered = certList.filter(c => {
       let matchesFilter = true;
-      if (activeCertFilter === "free") matchesFilter = c.isFree === true;
-      else if (activeCertFilter === "training-only") matchesFilter = c.category === "Free Training, Paid Exam";
-      else if (activeCertFilter === "paid") matchesFilter = c.isFree === false;
+      if (activeCertFilter === "free") matchesFilter = (c.isFree === true || (c.cost && c.cost.toLowerCase().includes("free")));
+      else if (activeCertFilter === "training-only") matchesFilter = (c.category === "Free Training, Paid Exam" || (c.format && c.format.includes("Free Training")));
+      else if (activeCertFilter === "paid") matchesFilter = (!c.isFree && (!c.cost || !c.cost.toLowerCase().includes("100% free")));
 
       let matchesSearch = true;
       if (certSearchQuery.trim()) {
         const q = certSearchQuery.toLowerCase();
-        matchesSearch = c.name.toLowerCase().includes(q) ||
-                        c.issuer.toLowerCase().includes(q) ||
-                        c.description.toLowerCase().includes(q);
+        matchesSearch = (c.name && c.name.toLowerCase().includes(q)) ||
+                        (c.issuer && c.issuer.toLowerCase().includes(q)) ||
+                        (c.description && c.description.toLowerCase().includes(q)) ||
+                        (c.notes && c.notes.toLowerCase().includes(q));
       }
       return matchesFilter && matchesSearch;
     });
@@ -885,13 +836,13 @@ document.addEventListener("DOMContentLoaded", () => {
             <span class="cert-cost-badge ${cert.isFree ? "free" : "paid"}">${cert.cost}</span>
           </div>
           <div class="cert-issuer">Issued by: <strong>${cert.issuer}</strong></div>
-          <p class="cert-desc">${cert.description}</p>
+          <p class="cert-desc">${cert.description || cert.notes || ""}</p>
           <div class="cert-why">
-            <strong>Why it matters:</strong> ${cert.whyItMatters}
+            <strong>Why it matters:</strong> ${cert.whyItMatters || cert.notes || "High employer and screening algorithm recognition."}
           </div>
         </div>
         <div class="cert-footer">
-          <span class="cert-validity">${cert.validity}</span>
+          <span class="cert-validity">${cert.validity || cert.time || "Verified 2026"}</span>
           <a href="${cert.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.4rem 0.8rem; font-size: 0.8rem;">
             Official Page
             <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
@@ -951,13 +902,16 @@ document.addEventListener("DOMContentLoaded", () => {
     `).join("");
   }
 
-  // --- YouTube Creators Showcase ---
+  // --- Curated YouTube Channels Showcase ---
   const creatorsContainer = document.getElementById("creatorsContainer");
-  if (creatorsContainer) {
+  if (creatorsContainer && data.creators && data.creators.length > 0) {
     creatorsContainer.innerHTML = data.creators.map(c => `
       <div class="creator-card">
         <div>
-          <h4 class="creator-name">${c.name}</h4>
+          <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; margin-bottom: 0.35rem;">
+            <h4 class="creator-name" style="margin-bottom: 0;">${c.name}</h4>
+            <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-rose); font-weight: 700; background: rgba(244, 63, 94, 0.1); padding: 0.15rem 0.5rem; border-radius: 9999px;">YouTube</span>
+          </div>
           <div class="creator-focus">${c.focus}</div>
           <p class="creator-style">${c.style}</p>
           <div class="creator-best">
@@ -965,7 +919,7 @@ document.addEventListener("DOMContentLoaded", () => {
           </div>
         </div>
         <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="creator-btn">
-          <svg width="16" height="16" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
+          <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor"><path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/></svg>
           Visit Channel
         </a>
       </div>
