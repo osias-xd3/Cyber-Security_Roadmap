@@ -110,6 +110,33 @@
 
     <!-- Main Content Area with Sticky Left Sidebar Index -->
     <div class="container">
+      
+      <!-- Sticky Mobile Course Index Quick Bar (Visible <= 992px) -->
+      <div class="mobile-index-bar">
+        <button class="mobile-index-toggle" id="mobileIndexToggleBtn" aria-expanded="false" aria-controls="mobileIndexDropdown">
+          <span style="display: flex; align-items: center; gap: 0.5rem;">
+            <span>📑</span>
+            <span>Course Index (Quick Jump)</span>
+          </span>
+          <svg class="chevron" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polyline points="6 9 12 15 18 9"></polyline></svg>
+        </button>
+
+        <div class="mobile-index-dropdown" id="mobileIndexDropdown">
+          <a href="#phase-card-0" class="mobile-index-pill"><span>Phase 0: Setup</span><small>Wk 1</small></a>
+          <a href="#phase-card-1" class="mobile-index-pill"><span>Phase 1: IT & Network</span><small>Mo 1-3</small></a>
+          <a href="#phase-card-2" class="mobile-index-pill"><span>Phase 2: Core Concepts</span><small>Mo 2-4</small></a>
+          <a href="#phase-card-3" class="mobile-index-pill"><span>Phase 3: Hands-On Labs</span><small>Ongoing</small></a>
+          <a href="#phase-card-4" class="mobile-index-pill"><span>Phase 4: Specialization</span><small>Mo 4-6</small></a>
+          <a href="#phase-card-5" class="mobile-index-pill"><span>Phase 5: Free Certs</span><small>Mo 2-6</small></a>
+          <a href="#phase-card-6" class="mobile-index-pill"><span>Phase 6: CompTIA Sec+</span><small>Mo 5-8</small></a>
+          <a href="#phase-card-7" class="mobile-index-pill"><span>Phase 7: Go Deeper</span><small>Mo 6-12</small></a>
+          <a href="#phase-card-8" class="mobile-index-pill"><span>Phase 8: Portfolio Lab</span><small>Mo 3+</small></a>
+          <a href="#specializations" class="mobile-index-pill"><span>🎯 5 Career Tracks</span></a>
+          <a href="#certifications" class="mobile-index-pill"><span>📜 Certifications</span></a>
+          <a href="#creators" class="mobile-index-pill"><span>📺 YouTube Mentors</span></a>
+        </div>
+      </div>
+
       <div class="roadmap-layout">
         
         <!-- Left Sidebar Index (Table of Contents) -->

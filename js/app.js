@@ -63,11 +63,38 @@ document.addEventListener("DOMContentLoaded", () => {
   const mobileMenuBtn = document.getElementById("mobileMenuBtn");
   const mobileDrawer = document.getElementById("mobileNavDrawer");
   if (mobileMenuBtn && mobileDrawer) {
-    mobileMenuBtn.addEventListener("click", () => {
-      mobileDrawer.classList.toggle("hidden");
+    const hamburgerSvg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="3" y1="12" x2="21" y2="12"></line><line x1="3" y1="6" x2="21" y2="6"></line><line x1="3" y1="18" x2="21" y2="18"></line></svg>`;
+    const closeSvg = `<svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"></line><line x1="6" y1="6" x2="18" y2="18"></line></svg>`;
+
+    function setDrawerState(open) {
+      mobileDrawer.classList.toggle("hidden", !open);
+      mobileMenuBtn.classList.toggle("active", open);
+      mobileMenuBtn.setAttribute("aria-expanded", String(open));
+      mobileMenuBtn.innerHTML = open ? closeSvg : hamburgerSvg;
+    }
+
+    mobileMenuBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = !mobileDrawer.classList.contains("hidden");
+      setDrawerState(!isOpen);
     });
+
     mobileDrawer.querySelectorAll("a").forEach(a => {
-      a.addEventListener("click", () => mobileDrawer.classList.add("hidden"));
+      a.addEventListener("click", () => setDrawerState(false));
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!mobileDrawer.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+        if (!mobileDrawer.classList.contains("hidden")) {
+          setDrawerState(false);
+        }
+      }
+    });
+
+    document.addEventListener("keydown", (e) => {
+      if (e.key === "Escape" && !mobileDrawer.classList.contains("hidden")) {
+        setDrawerState(false);
+      }
     });
   }
 
@@ -412,6 +439,45 @@ document.addEventListener("DOMContentLoaded", () => {
             item.classList.remove("active");
           }
         });
+
+        const mobileIndexPills = document.querySelectorAll(".mobile-index-pill");
+        mobileIndexPills.forEach(pill => {
+          const href = pill.getAttribute("href");
+          if (href === `#${currentId}`) {
+            pill.classList.add("active");
+          } else {
+            pill.classList.remove("active");
+          }
+        });
+      }
+    });
+  }
+
+  // --- Mobile Course Index Bar Controller (Roadmap Page) ---
+  const mobileIndexToggleBtn = document.getElementById("mobileIndexToggleBtn");
+  const mobileIndexDropdown = document.getElementById("mobileIndexDropdown");
+  if (mobileIndexToggleBtn && mobileIndexDropdown) {
+    mobileIndexToggleBtn.addEventListener("click", (e) => {
+      e.stopPropagation();
+      const isOpen = mobileIndexDropdown.classList.contains("open");
+      mobileIndexDropdown.classList.toggle("open", !isOpen);
+      mobileIndexToggleBtn.classList.toggle("expanded", !isOpen);
+      mobileIndexToggleBtn.setAttribute("aria-expanded", String(!isOpen));
+    });
+
+    mobileIndexDropdown.querySelectorAll(".mobile-index-pill").forEach(pill => {
+      pill.addEventListener("click", () => {
+        mobileIndexDropdown.classList.remove("open");
+        mobileIndexToggleBtn.classList.remove("expanded");
+        mobileIndexToggleBtn.setAttribute("aria-expanded", "false");
+      });
+    });
+
+    document.addEventListener("click", (e) => {
+      if (!mobileIndexDropdown.contains(e.target) && !mobileIndexToggleBtn.contains(e.target)) {
+        mobileIndexDropdown.classList.remove("open");
+        mobileIndexToggleBtn.classList.remove("expanded");
+        mobileIndexToggleBtn.setAttribute("aria-expanded", "false");
       }
     });
   }

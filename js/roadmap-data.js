@@ -54,8 +54,8 @@ const ROADMAP_DATA = {
           name: "Note-Taking System: Obsidian or Notion",
           detail: "Create a vault called 'Cybersecurity Notes'. Document every concept, tool cheat sheet, and lab write-up. Obsidian is offline, markdown-based, and ideal for linking concepts.",
           resources: [
-            { name: "Obsidian Official Download", type: "Tool", url: "https://obsidian.md", desc: "Free markdown note-taking app with offline graph view" },
-            { name: "Notion", type: "Tool", url: "https://www.notion.so", desc: "Cloud workspace for structured documentation" }
+            { name: "Obsidian Official", type: "Free Tool", url: "https://obsidian.md", desc: "Markdown note-taking app with local file storage & knowledge graphs" },
+            { name: "Notion", type: "Web App", url: "https://www.notion.so", desc: "Structured web & desktop workspace for documentation" }
           ]
         },
         {
@@ -63,7 +63,7 @@ const ROADMAP_DATA = {
           name: "GitHub Account (Your Future Portfolio)",
           detail: "Sign up at github.com. This is where you will commit your write-ups, automation scripts, and lab architectures.",
           resources: [
-            { name: "GitHub Sign Up", type: "Platform", url: "https://github.com", desc: "Where you will host your write-ups and tool scripts" }
+            { name: "GitHub Sign Up", type: "Portfolio Platform", url: "https://github.com", desc: "Where you will host your write-ups and tool scripts" }
           ]
         },
         {
@@ -71,7 +71,7 @@ const ROADMAP_DATA = {
           name: "LinkedIn Profile (Public Learning Journey)",
           detail: "Even a bare profile works to start. You will build and share weekly progress posts as you advance.",
           resources: [
-            { name: "LinkedIn", type: "Platform", url: "https://www.linkedin.com", desc: "Professional networking platform to document learning publicly" }
+            { name: "LinkedIn", type: "Professional Network", url: "https://www.linkedin.com", desc: "Document your learning progress and engage with hiring managers" }
           ]
         },
         {
@@ -79,8 +79,8 @@ const ROADMAP_DATA = {
           name: "Virtualization Engine: VirtualBox or VMware Player",
           detail: "VirtualBox (100% free open-source) or VMware Workstation Player (free for personal use). This hosts your target VMs and testing machines.",
           resources: [
-            { name: "Oracle VirtualBox", type: "Free Hypervisor", url: "https://www.virtualbox.org", desc: "Open-source hypervisor for running isolated virtual machines" },
-            { name: "VMware Workstation Player", type: "Hypervisor", url: "https://www.vmware.com", desc: "Free for personal non-commercial use" }
+            { name: "Oracle VirtualBox", type: "Open Source Hypervisor", url: "https://www.virtualbox.org", desc: "Free x86/AMD64 hypervisor for running isolated guest OSs" },
+            { name: "VMware Workstation Player", type: "Hypervisor", url: "https://www.vmware.com", desc: "Free for personal non-commercial desktop virtualization" }
           ]
         },
         {
@@ -88,8 +88,8 @@ const ROADMAP_DATA = {
           name: "Kali Linux Virtual Machine",
           detail: "Download the pre-built VirtualBox or VMware VM image from kali.org — the gold standard penetration testing distro packed with hundreds of tools.",
           resources: [
-            { name: "Kali Linux VM Images", type: "Download", url: "https://www.kali.org/get-kali/#kali-virtual-machines", desc: "Official pre-built virtual appliance for VirtualBox & VMware" },
-            { name: "Kali Documentation", type: "Docs", url: "https://www.kali.org/docs/", desc: "Official guides on default credentials and tools" }
+            { name: "Kali Linux Pre-Built Virtual Machines", type: "OS Download", url: "https://www.kali.org/get-kali/#kali-virtual-machines", desc: "Official ready-to-run VM image for VirtualBox & VMware" },
+            { name: "Kali Documentation & Tools", type: "Documentation", url: "https://www.kali.org/docs/", desc: "Official guides on default configurations and bundled tools" }
           ]
         },
         {
@@ -97,8 +97,8 @@ const ROADMAP_DATA = {
           name: "TryHackMe & Hack The Box Accounts",
           detail: "Create free tier accounts at tryhackme.com and hackthebox.com for gamified browser-based and VPN-based security labs.",
           resources: [
-            { name: "TryHackMe Free Tier", type: "Lab Platform", url: "https://tryhackme.com", desc: "Hands-on guided cybersecurity rooms" },
-            { name: "Hack The Box Free Tier", type: "Lab Platform", url: "https://www.hackthebox.com", desc: "Hands-on penetration testing labs & academy" }
+            { name: "TryHackMe Free Tier", type: "Lab Platform", url: "https://tryhackme.com", desc: "Interactive cybersecurity training rooms and gamified CTFs" },
+            { name: "Hack The Box Free Tier", type: "Lab Platform", url: "https://www.hackthebox.com", desc: "Virtual labs and machine exploitation ranges" }
           ]
         }
       ],
@@ -126,8 +126,8 @@ const ROADMAP_DATA = {
           name: "Computer Architecture & OS Internals",
           detail: "How a computer boots (BIOS/UEFI, bootloaders), CPU architecture, processes, memory management (RAM, stack, heap), and file systems (NTFS, ext4).",
           resources: [
-            { name: "CrashCourse Computer Science", type: "Video Series", url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo", desc: "Visual introduction to CPU architecture, RAM, and hardware registers" },
-            { name: "Microsoft Learn OS Fundamentals", type: "Free Course", url: "https://learn.microsoft.com", desc: "Official training on process management and memory allocation" }
+            { name: "OSTEP (Operating Systems: Three Easy Pieces)", type: "Free University Book", url: "https://pages.cs.wisc.edu/~remzi/OSTEP/", desc: "Acclaimed university textbook & course on virtualization, concurrency, and persistence" },
+            { name: "CrashCourse Computer Science Series", type: "Video Series", url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo", desc: "Visual introduction to CPU architecture, registers, RAM, and OS processes" }
           ]
         },
         {
@@ -135,8 +135,8 @@ const ROADMAP_DATA = {
           name: "OSI 7-Layer & TCP/IP 4-Layer Models",
           detail: "Understand both cold. Know the difference between Layer 2 (Data Link / MAC), Layer 3 (Network / IP), Layer 4 (Transport / TCP/UDP), and Layer 7 (Application).",
           resources: [
-            { name: "Professor Messer's Network+ (OSI Video)", type: "Video Course", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/the-osi-model-2/", desc: "Detailed breakdown of all 7 layers with practical encapsulation examples" },
-            { name: "freeCodeCamp Networking Full Course", type: "YouTube Full Course", url: "https://www.freecodecamp.org/news/computer-networking-course/", desc: "Free multi-hour deep dive into network models" }
+            { name: "Professor Messer's Network+ Full Course", type: "Free Video Course", url: "https://www.professormesser.com/network-plus/", desc: "Comprehensive free video series covering the OSI model and packet encapsulation" },
+            { name: "freeCodeCamp Computer Networking Course", type: "Full YouTube Course", url: "https://www.youtube.com/watch?v=IPvYjXCsTg8", desc: "Comprehensive 9+ hour complete computer networking tutorial" }
           ]
         },
         {
@@ -144,8 +144,8 @@ const ROADMAP_DATA = {
           name: "IP Addressing & Subnetting",
           detail: "IPv4 vs IPv6, CIDR notation (/24, /16, /30), public vs private IP ranges (RFC 1918), and subnet calculations until it is automatic.",
           resources: [
-            { name: "Professor Messer Subnetting Playlist", type: "Video Tutorial", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/seven-second-subnetting-3/", desc: "Master the 7-second subnetting technique" },
-            { name: "SubnettingPractice.com", type: "Practice Tool", url: "https://subnettingpractice.com", desc: "Interactive quizzes to make subnetting automatic" }
+            { name: "SubnettingPractice.com", type: "Interactive Drills", url: "https://subnettingpractice.com", desc: "Interactive subnet quizzes to build speed and accuracy" },
+            { name: "Professor Messer's Network+ Playlist", type: "Free Lessons", url: "https://www.professormesser.com/network-plus/", desc: "Practical lessons on binary math, CIDR masks, and network ranges" }
           ]
         },
         {
@@ -153,8 +153,8 @@ const ROADMAP_DATA = {
           name: "Core Network Protocols & Common Ports",
           detail: "DNS (53), DHCP (67/68), HTTP (80), HTTPS (443), SSH (22), Telnet (23), FTP (21), SMTP (25), SMB (445), RDP (3389), etc. Understand stateful connections and 3-way handshakes.",
           resources: [
-            { name: "Cisco Networking Academy — Intro to Networking", type: "Free Interactive", url: "https://www.netacad.com", desc: "Packet tracer exercises exploring real protocols" },
-            { name: "SpeedGuide Port Database", type: "Reference", url: "https://www.speedguide.net/ports.php", desc: "Comprehensive lookup for TCP/UDP port numbers" }
+            { name: "Cisco Networking Academy", type: "Interactive Platform", url: "https://www.netacad.com", desc: "Free foundational courses on Packet Tracer and protocol mechanics" },
+            { name: "SpeedGuide Common Ports Database", type: "Lookup Tool", url: "https://www.speedguide.net/ports.php", desc: "Search and understand TCP/UDP ports and their vulnerabilities" }
           ]
         },
         {
@@ -162,7 +162,7 @@ const ROADMAP_DATA = {
           name: "Network Hardware & Perimeter Defense",
           detail: "Routers, switches, VLANs, firewalls (stateless vs stateful vs NGFW), NAT, and VPN technologies (IPsec, OpenVPN, WireGuard).",
           resources: [
-            { name: "NetworkChuck - Network Hardware Explained", type: "YouTube", url: "https://www.youtube.com/@NetworkChuck", desc: "Visual breakdowns of routers, switches, and VLAN segmentation" }
+            { name: "NetworkChuck YouTube Channel", type: "Video Tutorials", url: "https://www.youtube.com/@NetworkChuck", desc: "Visual and beginner-friendly breakdowns of routers, switches, and firewalls" }
           ]
         },
         {
@@ -170,7 +170,7 @@ const ROADMAP_DATA = {
           name: "Windows Administration Basics",
           detail: "Active Directory fundamentals (Domains, Forests, OUs, Domain Controllers), Group Policy Objects (GPOs), Windows Event Viewer, and PowerShell basics.",
           resources: [
-            { name: "Microsoft Learn Windows Modules", type: "Free Course", url: "https://learn.microsoft.com", desc: "Official training on Active Directory administration" }
+            { name: "Microsoft Learn Official Portal", type: "Free Training", url: "https://learn.microsoft.com", desc: "Explore modules on Windows Server, Active Directory, and PowerShell" }
           ]
         },
         {
@@ -178,8 +178,8 @@ const ROADMAP_DATA = {
           name: "Linux Fundamentals & Command Line",
           detail: "FHS directory structure (/etc, /var, /bin, /home), Linux file permissions (rwx, chmod, chown), package management (apt, dnf), and Bash scripting essentials.",
           resources: [
-            { name: "OverTheWire: Bandit (SSH Wargame)", type: "Hands-on Wargame", url: "https://overthewire.org/wargames/bandit/", desc: "Learn command-line Linux by solving 34+ progressive SSH challenges" },
-            { name: "Linux Journey", type: "Free Tutorial", url: "https://linuxjourney.com", desc: "Structured, interactive Linux fundamentals tutorial" }
+            { name: "OverTheWire: Bandit (SSH Wargame)", type: "Hands-on Wargame", url: "https://overthewire.org/wargames/bandit/", desc: "Master the Linux command line by solving 34+ progressive SSH challenges" },
+            { name: "Linux Journey", type: "Free Interactive Guide", url: "https://linuxjourney.com", desc: "Structured, clean tutorial on Linux permissions, CLI, and processes" }
           ]
         }
       ],
@@ -208,7 +208,7 @@ const ROADMAP_DATA = {
           name: "The CIA Triad & Security Architecture",
           detail: "Confidentiality, Integrity, Availability, and secondary concepts like Non-Repudiation, Defense in Depth, and Least Privilege.",
           resources: [
-            { name: "Professor Messer's Security+ (SY0-701)", type: "Video Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "The gold-standard complete free course covering CIA models" }
+            { name: "Professor Messer's Security+ Full Course", type: "Free Video Series", url: "https://www.professormesser.com/security-plus/", desc: "Free video course covering the complete Security+ SY0-701 syllabus" }
           ]
         },
         {
@@ -216,7 +216,7 @@ const ROADMAP_DATA = {
           name: "Risk Management & Threat Modeling",
           detail: "Risk = Threat × Vulnerability × Impact; qualitative vs quantitative risk; likelihood, risk mitigation, transference, acceptance, and STRIDE model.",
           resources: [
-            { name: "NIST Special Publication 800-30", type: "Official Standard", url: "https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final", desc: "Guide for Conducting Risk Assessments" }
+            { name: "NIST SP 800-30 Risk Assessment Guide", type: "Official Standard", url: "https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final", desc: "The definitive guide for conducting enterprise risk assessments" }
           ]
         },
         {
@@ -232,7 +232,7 @@ const ROADMAP_DATA = {
           name: "Cryptography & PKI Fundamentals",
           detail: "Symmetric (AES, ChaCha20) vs Asymmetric encryption (RSA, ECC), cryptographic hashing (SHA-256), salt, digital signatures, and Public Key Infrastructure (CA, certificates, CRL).",
           resources: [
-            { name: "Professor Messer Cryptography Series", type: "Video Lessons", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "Clear explanations of symmetric, asymmetric, and hashing mechanics" }
+            { name: "Professor Messer Security+ Cryptography", type: "Video Lessons", url: "https://www.professormesser.com/security-plus/", desc: "Clear explanations of symmetric, asymmetric, and hashing mechanics" }
           ]
         },
         {
@@ -248,7 +248,7 @@ const ROADMAP_DATA = {
           name: "Governance, Risk & Compliance (GRC)",
           detail: "High-level understanding of regulatory frameworks: NIST Cybersecurity Framework (CSF), ISO 27001, GDPR, HIPAA, PCI-DSS, and SOC 2.",
           resources: [
-            { name: "NIST CSF 2.0 Documentation", type: "Framework", url: "https://www.nist.gov/cyberframework", desc: "The official industry standard risk framework. Read once even as a beginner." }
+            { name: "NIST CSF 2.0 Documentation", type: "Official Framework", url: "https://www.nist.gov/cyberframework", desc: "The official industry standard risk framework" }
           ]
         },
         {
@@ -256,7 +256,7 @@ const ROADMAP_DATA = {
           name: "Incident Response Lifecycle & BCDR",
           detail: "The 6 phases of incident response (Preparation, Detection, Containment, Eradication, Recovery, Lessons Learned), plus Business Continuity & Disaster Recovery basics.",
           resources: [
-            { name: "Cisco Intro & Cybersecurity Essentials", type: "NetAcad Course", url: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity", desc: "Incident triage and disaster recovery concepts with free Credly badge" }
+            { name: "Cisco Introduction to Cybersecurity", type: "NetAcad Course", url: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity", desc: "Incident triage and disaster recovery concepts with free Credly badge" }
           ]
         }
       ],
@@ -317,7 +317,7 @@ const ROADMAP_DATA = {
           name: "picoCTF (Carnegie Mellon University)",
           detail: "Free, beginner-friendly Capture The Flag platform available year-round. Great for web exploitation, cryptography, binary exploitation, and reverse engineering.",
           resources: [
-            { name: "picoCTF Archive", type: "CTF Competition", url: "https://picoctf.org", desc: "Accessible beginner cyber challenge archive" }
+            { name: "picoCTF Challenge Archive", type: "CTF Competition", url: "https://picoctf.org", desc: "Accessible beginner cyber challenge archive created by CMU" }
           ]
         },
         {
@@ -438,7 +438,7 @@ const ROADMAP_DATA = {
       overviewPoints: [
         "The #1 baseline credential required or preferred in entry-level SOC and analyst postings.",
         "Voucher cost is ~$400, but student discounts are available via the CompTIA Academic Marketplace.",
-        "Study 100% free with Professor Messer's complete SY0-701 video series and ExamCompass tests.",
+        "Study 100% free with Professor Messer's complete video series and ExamCompass tests.",
         "If budget is tight, do not stall! Keep building your portfolio, SIEM lab, and TryHackMe rooms."
       ],
       topics: [
@@ -447,9 +447,9 @@ const ROADMAP_DATA = {
           name: "CompTIA Security+ SY0-701 Preparation",
           detail: "Cover all five exam domains: General Security Concepts, Threats/Vulnerabilities, Security Architecture, Operations & Incident Response, Governance/Risk/Compliance.",
           resources: [
-            { name: "Professor Messer's SY0-701 Course", type: "Free Full Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "Free video for every single exam objective" },
-            { name: "ExamCompass Security+ Practice", type: "Free Practice Tests", url: "https://www.examcompass.com/comptia/security-plus-certification/free-security-plus-practice-tests", desc: "Topic-by-topic multiple-choice quizzes" },
-            { name: "CompTIA Academic Marketplace", type: "Student Discounts", url: "https://academic-store.comptia.org", desc: "Heavily discounted vouchers with an active student email" }
+            { name: "Professor Messer's Security+ Hub", type: "Free Full Course", url: "https://www.professormesser.com/security-plus/", desc: "Free video course covering every single exam objective" },
+            { name: "ExamCompass Security+ Practice", type: "Free Practice Tests", url: "https://www.examcompass.com", desc: "Topic-by-topic multiple-choice practice quizzes" },
+            { name: "CompTIA Official Security+", type: "Certification Details", url: "https://www.comptia.org/certifications/security", desc: "Official exam objectives and testing requirements" }
           ]
         }
       ],
@@ -495,7 +495,7 @@ const ROADMAP_DATA = {
           detail: "Master enterprise security tooling aligned with your chosen track (Splunk, Wireshark, Burp Suite, CloudTrail, or GRC frameworks) and prepare for practical scenario exams.",
           resources: [
             { name: "Security Blue Team (BTL1)", type: "Practical Exam", url: "https://securityblue.team/why-btl1/", desc: "24-hour practical incident response exam with live evidence analysis" },
-            { name: "eJPT Certification (INE)", type: "Practical Pentest", url: "https://ine.com/certifications/ejpt-certification", desc: "Hands-on network penetration testing certification" },
+            { name: "eJPT Certification (INE)", type: "Practical Pentest", url: "https://ine.com/learning/certifications/ejpt", desc: "Hands-on network penetration testing certification" },
             { name: "AWS Cloud Practitioner Essentials", type: "Free AWS Training", url: "https://skillbuilder.aws", desc: "Official free cloud fundamentals curriculum" }
           ]
         }
@@ -523,7 +523,7 @@ const ROADMAP_DATA = {
           name: "1. GitHub CTF & Machine Write-Ups",
           detail: "Publish structured, well-formatted markdown write-ups for every TryHackMe room, Hack The Box machine, or OverTheWire level you solve. Document: What was the vulnerability? How did you discover it? How did you exploit or remediate it? What did you learn?",
           resources: [
-            { name: "Example Markdown Writeup Template", type: "Guide", url: "https://github.com", desc: "How to structure professional CTF walkthroughs on GitHub" }
+            { name: "GitHub Markdown Documentation Guide", type: "Guide", url: "https://github.com", desc: "How to structure professional CTF walkthroughs and repositories" }
           ]
         },
         {
@@ -531,7 +531,7 @@ const ROADMAP_DATA = {
           name: "2. The Home SOC Lab Project (Highest ROI)",
           detail: "Set up a virtual SIEM (free-tier Splunk or the open-source Elastic / ELK stack) ingesting Sysmon logs, Windows Event logs, or Linux auditd logs from target VMs. Trigger an attack, create an alert rule, and write a full case study on LinkedIn / GitHub.",
           resources: [
-            { name: "Splunk Free Tier Download", type: "Enterprise SIEM", url: "https://www.splunk.com", desc: "Free enterprise license allowing up to 500MB/day of log ingestion" },
+            { name: "Splunk Free Tier", type: "Enterprise SIEM", url: "https://www.splunk.com", desc: "Free enterprise license allowing up to 500MB/day of log ingestion" },
             { name: "Elastic Security Free Guide", type: "Open Source SIEM", url: "https://www.elastic.co/security", desc: "Deploying Elastic agent and ingesting Windows Sysmon logs" }
           ]
         },
@@ -540,7 +540,7 @@ const ROADMAP_DATA = {
           name: "3. Public Technical Learning Logs",
           detail: "Share your weekly journey on LinkedIn or a personal blog: 'Week 12: How I configured an ELK SIEM and detected credential dumping.' Technical recruiters and hiring managers actively search for candidates demonstrating genuine curiosity and communication ability.",
           resources: [
-            { name: "LinkedIn Articles", type: "Blogging", url: "https://www.linkedin.com", desc: "Publishing long-form technical walkthroughs directly on LinkedIn" }
+            { name: "LinkedIn Articles", type: "Blogging Platform", url: "https://www.linkedin.com", desc: "Publishing long-form technical walkthroughs directly on LinkedIn" }
           ]
         },
         {
@@ -548,7 +548,7 @@ const ROADMAP_DATA = {
           name: "4. Resume & Profile Optimization",
           detail: "Embed your TryHackMe and Hack The Box public profile badges directly in your resume header and LinkedIn profile. Technical managers inspect these profiles to verify real hands-on capability.",
           resources: [
-            { name: "TryHackMe Public Profile", type: "Badge Embed", url: "https://tryhackme.com", desc: "Generate public verifiable profile badges for resumes" }
+            { name: "TryHackMe Profile Settings", type: "Badge Embed", url: "https://tryhackme.com", desc: "Generate public verifiable profile badges for resumes" }
           ]
         }
       ],
@@ -749,7 +749,7 @@ const ROADMAP_DATA = {
       category: "Free Training, Paid Exam",
       issuer: "PortSwigger",
       validity: "Certified Credential",
-      url: "https://portswigger.net/web-security/certification",
+      url: "https://portswigger.net/web-security",
       description: "Training is 100% free through the Web Security Academy. The official 4-hour practical exam costs ~$99 (requires Burp Suite Pro license).",
       whyItMatters: "The premier hands-on certification for web application penetration testing. Save for after Security+."
     },
@@ -797,7 +797,7 @@ const ROADMAP_DATA = {
       category: "Specialized Paid",
       issuer: "INE Security",
       validity: "3 Years",
-      url: "https://ine.com/certifications/ejpt-certification",
+      url: "https://ine.com/learning/certifications/ejpt",
       description: "100% practical, hands-on network penetration testing exam. Ideal stepping stone before tackling PNPT or OSCP.",
       whyItMatters: "Builds real exploitation confidence in a safe, simulated corporate network."
     }
