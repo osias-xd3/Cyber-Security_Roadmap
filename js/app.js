@@ -36,6 +36,17 @@ document.addEventListener("DOMContentLoaded", () => {
     }
   }
 
+  function getTrackEmoji(id) {
+    switch(id) {
+      case "blue-team": return "🛡️";
+      case "red-team": return "⚔️";
+      case "cloud-security": return "☁️";
+      case "grc": return "📋";
+      case "dfir": return "🔍";
+      default: return "🎯";
+    }
+  }
+
   // --- Theme Controller ---
   const themeToggleBtn = document.getElementById("themeToggleBtn");
   const currentTheme = localStorage.getItem(STORAGE_KEY_THEME) || "dark";
@@ -271,17 +282,32 @@ document.addEventListener("DOMContentLoaded", () => {
         `;
       }
 
-      // Phase 4 Specialization embed
+      // Phase 4 Interactive Specialization Pathway & Exercises Embed
       let specializationMarkup = "";
       if (phase.id === 4) {
+        const currentSavedTrack = localStorage.getItem(STORAGE_KEY_TRACK) || "blue-team";
         specializationMarkup = `
-          <div class="phase-specialization-callout" style="background: var(--bg-secondary); border-radius: var(--radius-md); padding: 1.25rem; margin-bottom: 1.5rem;">
-            <p style="margin-bottom: 1rem; color: var(--text-muted); font-size: 0.95rem;">
-              Compare daily duties, required tools, free labs, and certification paths for all 5 domains in our <strong>Specialization Explorer</strong> below.
-            </p>
-            <a href="#specializations" class="btn btn-outline" style="display: inline-flex; font-size: 0.85rem;">
-              Jump to 5 Specialization Tracks ↓
-            </a>
+          <div class="phase-pathways-container" id="phase4PathwaysContainer">
+            <div class="phase-pathways-header">
+              <div style="font-size: 0.8rem; text-transform: uppercase; font-family: var(--font-mono); color: var(--accent-cyan); font-weight: 700; margin-bottom: 0.25rem;">
+                Phase 4 Interactive Specialization Explorer
+              </div>
+              <h4 style="font-size: 1.15rem; color: var(--text-main); margin-bottom: 0.35rem;">Choose Your Target Career Pathway</h4>
+              <p style="font-size: 0.875rem; color: var(--text-muted); margin-bottom: 0.85rem;">
+                Click any domain below to inspect its role overview, entry job titles, essential certification progression ladder (Section B6), and curated games & training labs.
+              </p>
+              <div class="phase-pathway-tabs" id="phase4PathwayTabs">
+                ${data.specializationTracks.map(t => `
+                  <button type="button" class="phase-pathway-btn ${t.id === currentSavedTrack ? 'active' : ''}" data-phase4-track="${t.id}">
+                    <span style="font-size: 1.1rem;">${getTrackEmoji(t.id)}</span>
+                    <span>${t.name}</span>
+                  </button>
+                `).join("")}
+              </div>
+            </div>
+            <div class="phase-pathway-body" id="phase4PathwayBody">
+              <!-- Dynamically populated by renderPhase4Track -->
+            </div>
           </div>
         `;
       }
@@ -424,6 +450,130 @@ document.addEventListener("DOMContentLoaded", () => {
         toggleAllResourcesBtn.textContent = allResourcesOpen ? "▲ Collapse All Resources" : "📚 Expand All Resources";
       });
     }
+
+    // Render and manage Phase 4 Interactive Pathways
+    function renderPhase4Track(trackId) {
+      const body = document.getElementById("phase4PathwayBody");
+      if (!body) return;
+      const track = data.specializationTracks.find(t => t.id === trackId) || data.specializationTracks[0];
+      if (!track) return;
+
+      // Essential Certs Ladder
+      let ladderMarkup = "";
+      if (track.essentialCertsPath && track.essentialCertsPath.length > 0) {
+        ladderMarkup = `
+          <div style="margin: 1.25rem 0 1rem;">
+            <h5 style="font-size: 0.95rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+              Essential Certifications Progression Ladder (Section B6):
+            </h5>
+            <div class="cert-ladder-wrap">
+              ${track.essentialCertsPath.map(step => `
+                <div class="cert-ladder-step">
+                  <span class="cert-ladder-step-num">${step.step}</span>
+                  <div class="cert-ladder-step-content" style="flex: 1;">
+                    <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                      <div class="cert-ladder-step-cert">${step.name}</div>
+                      <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600;">${step.cost}</span>
+                    </div>
+                    <div style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 0.25rem;">${step.issuer} • ${step.type}</div>
+                    <div class="cert-ladder-step-why">${step.notes}</div>
+                  </div>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      // Games and Exercises
+      let gamesMarkup = "";
+      if (track.gamesAndExercises && track.gamesAndExercises.length > 0) {
+        gamesMarkup = `
+          <div style="margin: 1.25rem 0 1rem;">
+            <h5 style="font-size: 0.95rem; color: var(--text-main); display: flex; align-items: center; gap: 0.5rem; margin-bottom: 0.75rem;">
+              <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+              Curated Games, CTFs & Hands-On Labs:
+            </h5>
+            <div class="games-exercises-grid">
+              ${track.gamesAndExercises.map(game => `
+                <div class="pathway-game-card">
+                  <div>
+                    <div class="game-card-top">
+                      <span class="game-name">${game.title}</span>
+                      <span class="game-badge ${(game.badge && game.badge.toLowerCase().includes('free')) ? 'free' : 'freemium'}">${game.badge || 'Practice'}</span>
+                    </div>
+                    <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 0.35rem;">Platform: ${game.platform}</div>
+                    <p class="game-desc">${game.desc}</p>
+                  </div>
+                  <a href="${game.url}" target="_blank" rel="noopener noreferrer" class="game-launch-btn">
+                    <span>Launch Lab / Play</span>
+                    <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                  </a>
+                </div>
+              `).join("")}
+            </div>
+          </div>
+        `;
+      }
+
+      body.innerHTML = `
+        <div style="background: var(--card-bg); border: 1px solid var(--border-subtle); border-radius: var(--radius-md); padding: 1.25rem;">
+          <div style="display: flex; align-items: center; gap: 0.75rem; margin-bottom: 0.5rem;">
+            <span style="font-size: 1.75rem;">${getTrackEmoji(track.id)}</span>
+            <h4 style="font-size: 1.25rem; color: var(--text-main);">${track.name}</h4>
+          </div>
+          <p style="font-size: 0.9rem; color: var(--text-muted); line-height: 1.5; margin-bottom: 1rem;">${track.roleOverview}</p>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle); text-transform: uppercase; margin-bottom: 0.4rem; font-weight: 700;">Typical Entry Titles:</div>
+            <div style="display: flex; flex-wrap: wrap; gap: 0.45rem;">
+              ${track.entryTitles.map(t => `<span class="title-chip">${t}</span>`).join("")}
+            </div>
+          </div>
+
+          <div style="font-size: 0.85rem; color: var(--accent-emerald); font-weight: 600; margin-bottom: 1rem;">
+            📈 Market Demand: ${track.demandInsight}
+          </div>
+
+          <div style="margin-bottom: 1rem;">
+            <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle); text-transform: uppercase; margin-bottom: 0.4rem; font-weight: 700;">Core Tools & Technologies:</div>
+            <div class="tools-list">
+              ${track.keyTools.map(tool => `<span class="tool-tag">${tool}</span>`).join("")}
+            </div>
+          </div>
+
+          ${ladderMarkup}
+          ${gamesMarkup}
+
+          <div style="margin-top: 1rem; padding: 0.85rem; background: rgba(6, 182, 212, 0.08); border-left: 3px solid var(--accent-cyan); border-radius: var(--radius-sm);">
+            <div style="font-size: 0.8rem; font-weight: 700; color: var(--accent-cyan); text-transform: uppercase; margin-bottom: 0.25rem;">Pro Tip from Industry Mentors:</div>
+            <div style="font-size: 0.85rem; color: var(--text-main); line-height: 1.45;">${track.proTip}</div>
+          </div>
+        </div>
+      `;
+    }
+
+    const p4Tabs = document.querySelectorAll("[data-phase4-track]");
+    if (p4Tabs.length > 0) {
+      p4Tabs.forEach(btn => {
+        btn.addEventListener("click", () => {
+          const trackId = btn.getAttribute("data-phase4-track");
+          localStorage.setItem(STORAGE_KEY_TRACK, trackId);
+          p4Tabs.forEach(b => b.classList.remove("active"));
+          btn.classList.add("active");
+          renderPhase4Track(trackId);
+
+          if (trackTabsContainer) {
+            trackTabsContainer.querySelectorAll("[data-track-id]").forEach(b => {
+              b.classList.toggle("active", b.getAttribute("data-track-id") === trackId);
+            });
+            renderTrackDetails();
+          }
+        });
+      });
+      renderPhase4Track(localStorage.getItem(STORAGE_KEY_TRACK) || "blue-team");
+    }
   }
 
   // Checkbox Event Delegation for Topics
@@ -534,6 +684,17 @@ document.addEventListener("DOMContentLoaded", () => {
         localStorage.setItem(STORAGE_KEY_TRACK, activeTrackId);
         renderTrackTabs();
         renderTrackDetails();
+
+        // Also sync Phase 4 tabs if on page
+        const p4Tabs = document.querySelectorAll("[data-phase4-track]");
+        if (p4Tabs.length > 0) {
+          p4Tabs.forEach(b => {
+            b.classList.toggle("active", b.getAttribute("data-phase4-track") === activeTrackId);
+          });
+          if (typeof renderPhase4Track === "function") {
+            renderPhase4Track(activeTrackId);
+          }
+        }
       });
     });
   }
@@ -610,6 +771,57 @@ document.addEventListener("DOMContentLoaded", () => {
               `).join("")}
             </div>
           </div>
+
+          ${track.essentialCertsPath && track.essentialCertsPath.length > 0 ? `
+            <div class="card-inner-box">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+                Essential Certifications Progression Ladder:
+              </h4>
+              <div class="cert-ladder-wrap">
+                ${track.essentialCertsPath.map(s => `
+                  <div class="cert-ladder-step">
+                    <span class="cert-ladder-step-num">${s.step}</span>
+                    <div class="cert-ladder-step-content" style="flex: 1;">
+                      <div style="display: flex; align-items: baseline; justify-content: space-between; gap: 0.5rem; flex-wrap: wrap;">
+                        <div class="cert-ladder-step-cert">${s.name}</div>
+                        <span style="font-family: var(--font-mono); font-size: 0.75rem; color: var(--accent-emerald); font-weight: 600;">${s.cost}</span>
+                      </div>
+                      <div style="font-size: 0.75rem; color: var(--accent-cyan); font-family: var(--font-mono); margin-bottom: 0.25rem;">${s.issuer} • ${s.type}</div>
+                      <div class="cert-ladder-step-why">${s.notes}</div>
+                    </div>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          ` : ""}
+
+          ${track.gamesAndExercises && track.gamesAndExercises.length > 0 ? `
+            <div class="card-inner-box">
+              <h4>
+                <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>
+                Curated Games, CTFs & Labs:
+              </h4>
+              <div class="games-exercises-grid">
+                ${track.gamesAndExercises.map(g => `
+                  <div class="pathway-game-card">
+                    <div>
+                      <div class="game-card-top">
+                        <span class="game-name">${g.title}</span>
+                        <span class="game-badge ${(g.badge && g.badge.toLowerCase().includes('free')) ? 'free' : 'freemium'}">${g.badge || 'Practice'}</span>
+                      </div>
+                      <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); margin-bottom: 0.35rem;">Platform: ${g.platform}</div>
+                      <p class="game-desc">${g.desc}</p>
+                    </div>
+                    <a href="${g.url}" target="_blank" rel="noopener noreferrer" class="game-launch-btn">
+                      <span>Launch Lab / Play</span>
+                      <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                    </a>
+                  </div>
+                `).join("")}
+              </div>
+            </div>
+          ` : ""}
         </div>
       </div>
     `;
@@ -758,6 +970,221 @@ document.addEventListener("DOMContentLoaded", () => {
         </a>
       </div>
     `).join("");
+  }
+
+
+  // =========================================================================
+  // PAGE: CERTIFICATIONS HUB (certifications.html)
+  // =========================================================================
+  const changesGrid = document.getElementById("changesGrid");
+  const shortlistTableBody = document.getElementById("shortlistTableBody");
+  const certCardsGrid = document.getElementById("certCardsGrid");
+  const notWorthGrid = document.getElementById("notWorthGrid");
+  const studyTipsList = document.getElementById("studyTipsList");
+  const vendorDirectoryGrid = document.getElementById("vendorDirectoryGrid");
+
+  if (changesGrid || shortlistTableBody || certCardsGrid || notWorthGrid || studyTipsList || vendorDirectoryGrid) {
+    const certsData = data.certificationsData;
+    if (certsData) {
+      // 1. What Changed in 2026
+      if (changesGrid && certsData.whatChanged2026) {
+        changesGrid.innerHTML = certsData.whatChanged2026.map(item => `
+          <div class="change-card">
+            <div class="change-head">
+              <span class="change-badge ${item.badge.toLowerCase().includes('critical') || item.badge.toLowerCase().includes('warning') || item.badge.toLowerCase().includes('policy') ? 'danger' : (item.badge.toLowerCase().includes('retired') || item.badge.toLowerCase().includes('pricing') || item.badge.toLowerCase().includes('price') ? 'warning' : 'info')}">${item.badge}</span>
+              <span class="change-topic">2026 Verified</span>
+            </div>
+            <h4 class="change-title">${item.title}</h4>
+            <div class="change-detail">${item.desc}</div>
+          </div>
+        `).join("");
+      }
+
+      // 2. Top 10 Shortlist Table
+      if (shortlistTableBody && certsData.top10Shortlist) {
+        shortlistTableBody.innerHTML = certsData.top10Shortlist.map(s => `
+          <tr>
+            <td style="text-align: center;"><span class="rank-badge ${s.rank <= 3 ? 'top3' : ''}">#${s.rank}</span></td>
+            <td>
+              <div style="font-weight: 700; color: var(--text-main); font-size: 1rem;">${s.name}</div>
+              <div style="font-size: 0.8rem; color: var(--accent-cyan); font-family: var(--font-mono);">${s.issuer}</div>
+            </td>
+            <td>
+              <span class="cert-cost-badge ${s.cost.toLowerCase().includes('free') ? 'free' : 'paid'}">${s.cost}</span>
+            </td>
+            <td>
+              <span style="color: #f59e0b; font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 1px;" title="Rating: ${s.rating}">${s.rating}</span>
+            </td>
+            <td>
+              <div style="font-size: 0.875rem; color: var(--text-main); line-height: 1.5;">${s.why}</div>
+            </td>
+          </tr>
+        `).join("");
+      }
+
+      // 3. Complete 62+ Directory with Search & Filtering
+      if (certCardsGrid && certsData.allCertifications) {
+        let activeDomainFilter = "all";
+        let activeCatFilter = "all";
+        let certSearchQuery = "";
+
+        function renderAllCertifications() {
+          const list = certsData.allCertifications.filter(c => {
+            // Domain filter
+            let matchesDomain = true;
+            if (activeDomainFilter === "free") matchesDomain = c.isFree === true;
+            else if (activeDomainFilter === "paid") matchesDomain = c.isFree === false;
+            else if (activeDomainFilter !== "all") matchesDomain = c.domain === activeDomainFilter;
+
+            // Category filter
+            let matchesCat = true;
+            if (activeCatFilter !== "all") matchesCat = c.category === activeCatFilter;
+
+            // Search query
+            let matchesSearch = true;
+            if (certSearchQuery.trim()) {
+              const q = certSearchQuery.toLowerCase();
+              matchesSearch = c.name.toLowerCase().includes(q) ||
+                              c.issuer.toLowerCase().includes(q) ||
+                              c.domain.toLowerCase().includes(q) ||
+                              c.category.toLowerCase().includes(q) ||
+                              (c.notes && c.notes.toLowerCase().includes(q));
+            }
+
+            return matchesDomain && matchesCat && matchesSearch;
+          });
+
+          const countEl = document.getElementById("certResultsCount");
+          if (countEl) {
+            countEl.textContent = `Showing ${list.length} of ${certsData.allCertifications.length} Credentials`;
+          }
+
+          if (list.length === 0) {
+            certCardsGrid.innerHTML = `
+              <div style="grid-column: 1 / -1; text-align: center; padding: 3rem; background: var(--card-bg); border: 1px solid var(--card-border); border-radius: var(--radius-md);">
+                <div style="font-size: 2rem; margin-bottom: 0.5rem;">🔍</div>
+                <h4 style="font-size: 1.1rem; color: var(--text-main); margin-bottom: 0.25rem;">No Certifications Found</h4>
+                <p style="color: var(--text-muted); font-size: 0.9rem;">Try adjusting your keyword search or domain/tier filters.</p>
+              </div>
+            `;
+            return;
+          }
+
+          certCardsGrid.innerHTML = list.map(c => `
+            <div class="cert-card-enhanced">
+              <div>
+                <div class="cert-card-top-row">
+                  <div>
+                    <div style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--accent-cyan); font-weight: 700; text-transform: uppercase;">${c.issuer}</div>
+                    <h4 style="font-size: 1.05rem; font-weight: 700; color: var(--text-main); margin: 0.15rem 0 0.25rem;">${c.name}</h4>
+                  </div>
+                  <span class="cert-cost-badge ${c.isFree ? 'free' : 'paid'}">${c.cost}</span>
+                </div>
+
+                <div style="display: flex; align-items: center; justify-content: space-between; margin: 0.4rem 0 0.65rem;">
+                  <span class="rating-stars" style="color: #f59e0b; font-family: var(--font-mono); font-size: 0.95rem; letter-spacing: 1px;" title="Rating: ${c.worthRating}">${c.worthRating}</span>
+                  <span style="font-size: 0.72rem; font-family: var(--font-mono); color: var(--accent-emerald); font-weight: 600;">⏱️ ${c.time || 'Varies'}</span>
+                </div>
+
+                <div class="cert-meta-tags">
+                  <span class="cert-pill-tag">🎯 ${c.domain}</span>
+                  <span class="cert-pill-tag">📝 ${c.format}</span>
+                  <span class="cert-pill-tag">🏷️ ${c.category}</span>
+                </div>
+
+                <div class="cert-notes-box">
+                  <strong style="color: var(--text-main); display: block; margin-bottom: 0.2rem;">Why It Matters & 2026 Advice:</strong>
+                  ${c.notes}
+                </div>
+              </div>
+
+              <div style="display: flex; align-items: center; justify-content: space-between; padding-top: 0.75rem; border-top: 1px solid var(--border-subtle); margin-top: auto;">
+                <span style="font-size: 0.75rem; font-family: var(--font-mono); color: var(--text-subtle);">${c.category}</span>
+                <a href="${c.url}" target="_blank" rel="noopener noreferrer" class="btn btn-outline" style="padding: 0.4rem 0.85rem; font-size: 0.8rem; display: inline-flex; align-items: center; gap: 0.35rem;">
+                  <span>Vendor Syllabus</span>
+                  <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                </a>
+              </div>
+            </div>
+          `).join("");
+        }
+
+        // Domain buttons
+        const domainFilterBtns = document.querySelectorAll("[data-cert-domain]");
+        domainFilterBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            domainFilterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeDomainFilter = btn.getAttribute("data-cert-domain");
+            renderAllCertifications();
+          });
+        });
+
+        // Category buttons
+        const catFilterBtns = document.querySelectorAll("[data-cert-cat]");
+        catFilterBtns.forEach(btn => {
+          btn.addEventListener("click", () => {
+            catFilterBtns.forEach(b => b.classList.remove("active"));
+            btn.classList.add("active");
+            activeCatFilter = btn.getAttribute("data-cert-cat");
+            renderAllCertifications();
+          });
+        });
+
+        // Search input
+        const certSearchInput = document.getElementById("certSearchInput");
+        if (certSearchInput) {
+          certSearchInput.addEventListener("input", (e) => {
+            certSearchQuery = e.target.value;
+            renderAllCertifications();
+          });
+        }
+
+        renderAllCertifications();
+      }
+
+      // 4. Not Worth Out-of-Pocket
+      if (notWorthGrid && certsData.notWorthOutOfPocket) {
+        notWorthGrid.innerHTML = certsData.notWorthOutOfPocket.map(item => `
+          <div class="not-worth-card">
+            <div class="not-worth-top">
+              <h4 class="not-worth-name">${item.title}</h4>
+              <span class="not-worth-cost">⚠️ Avoid Self-Pay</span>
+            </div>
+            <div class="not-worth-reason" style="margin-top: 0.85rem;">
+              <strong style="color: var(--accent-rose); display: block; margin-bottom: 0.25rem;">Why avoid paying out-of-pocket:</strong>
+              ${item.reason}
+            </div>
+          </div>
+        `).join("");
+      }
+
+      // 5. Study Tips
+      if (studyTipsList && certsData.studyCostTips) {
+        studyTipsList.innerHTML = certsData.studyCostTips.map((tip, idx) => `
+          <div class="study-tip-card">
+            <div class="tip-num">0${idx + 1}</div>
+            <div class="tip-content">
+              <h4 class="tip-strategy">${tip.category}</h4>
+              <p class="tip-detail">${tip.tip}</p>
+            </div>
+          </div>
+        `).join("");
+      }
+
+      // 6. Vendor Directory
+      if (vendorDirectoryGrid && certsData.vendorDirectory) {
+        vendorDirectoryGrid.innerHTML = certsData.vendorDirectory.map(v => `
+          <a href="${v.url}" target="_blank" rel="noopener noreferrer" class="vendor-card">
+            <div class="vendor-name">${v.name}</div>
+            <div class="vendor-link-text">
+              <span>Official Portal</span>
+              <svg width="12" height="12" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+            </div>
+          </a>
+        `).join("");
+      }
+    }
   }
 
   // --- Reset Progress ---
