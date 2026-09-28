@@ -1,12 +1,15 @@
 /**
  * Complete Cybersecurity Roadmap Dataset
  * Verified & Fact-Checked as of August-September 2026
+ * Author: Muhammad Awais (Software Engineering Student at COMSATS Lahore)
  */
 
 const ROADMAP_DATA = {
   metadata: {
     title: "The Complete Cybersecurity Roadmap",
     subtitle: "Zero Knowledge → Job-Ready Skills",
+    author: "Muhammad Awais",
+    authorTitle: "Software Engineering Student at COMSATS Lahore",
     description: "A self-contained, fact-checked roadmap focused on real cybersecurity skill: topics, verified free resources, active free certifications, hands-on practice, and portfolio building.",
     timeline: "9–14 months of consistent effort (10–15 hrs/week), faster if full-time",
     verifiedDate: "August–September 2026",
@@ -29,72 +32,6 @@ const ROADMAP_DATA = {
     ]
   },
 
-  first30Days: [
-    {
-      id: "f30-1",
-      title: "Set up VirtualBox + Kali Linux VM",
-      description: "Download VirtualBox and Kali Linux virtual appliance from kali.org. Boot it up, get familiar with the terminal, and update packages.",
-      link: "https://www.kali.org",
-      linkText: "Download Kali Linux",
-      category: "Setup",
-      tag: "Must-Have"
-    },
-    {
-      id: "f30-2",
-      title: "Create Core Accounts (GitHub, LinkedIn, THM, HTB)",
-      description: "Set up your learning identity. Your GitHub will host your write-ups and scripts; your LinkedIn documents your progress; TryHackMe and Hack The Box will be your daily practice grounds.",
-      link: "https://tryhackme.com",
-      linkText: "TryHackMe Signup",
-      category: "Profiles",
-      tag: "Identity"
-    },
-    {
-      id: "f30-3",
-      title: "Start Professor Messer's Network+ Course",
-      description: "Watch 3–5 videos per week. Take structured notes on the OSI model, IP addressing, common ports, and core network protocols.",
-      link: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-training-course/",
-      linkText: "Watch Course",
-      category: "Networking",
-      tag: "Core Study"
-    },
-    {
-      id: "f30-4",
-      title: "Complete OverTheWire Bandit Levels 1–10",
-      description: "Learn Linux terminal commands (cd, ls, cat, grep, find, ssh) by solving hands-on wargame levels over SSH.",
-      link: "https://overthewire.org/wargames/bandit/",
-      linkText: "OverTheWire Bandit",
-      category: "Linux",
-      tag: "Hands-On"
-    },
-    {
-      id: "f30-5",
-      title: "Start TryHackMe's 'Pre Security' Path",
-      description: "Work through the interactive, beginner-friendly modules on network basics, web fundamentals, and how attacks work.",
-      link: "https://tryhackme.com/path/outline/presecurity",
-      linkText: "Pre Security Path",
-      category: "Practice",
-      tag: "Hands-On"
-    },
-    {
-      id: "f30-6",
-      title: "Enroll in Cisco's Free Introduction to Cybersecurity",
-      description: "Free self-paced training that teaches basic defense concepts and awards an official verifiable Credly digital badge.",
-      link: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity",
-      linkText: "Cisco NetAcad Course",
-      category: "Free Cert",
-      tag: "Credential"
-    },
-    {
-      id: "f30-7",
-      title: "Publish Your First GitHub / LinkedIn Learning Log",
-      description: "Write a short summary of what you learned this week (e.g., 'Bandit levels 1-5 write-up' or 'How TCP 3-way handshake works'). Public documentation builds recruiter visibility early.",
-      link: "https://github.com",
-      linkText: "GitHub Repositories",
-      category: "Portfolio",
-      tag: "Crucial"
-    }
-  ],
-
   phases: [
     {
       id: 0,
@@ -105,44 +42,65 @@ const ROADMAP_DATA = {
       badgeColor: "gray",
       summary: "Before touching any content, set up these tools. They cost zero dollars and you will rely on them every single week.",
       description: "Lay the groundwork for continuous hands-on learning, documentation, and professional presence.",
+      overviewPoints: [
+        "Create your core note-taking system in Obsidian or Notion to document all labs.",
+        "Set up professional presence on LinkedIn and a repository on GitHub for write-ups.",
+        "Install VirtualBox or VMware Player and import the pre-configured Kali Linux VM.",
+        "Register free-tier accounts on TryHackMe and Hack The Box for daily practice."
+      ],
       topics: [
         {
           id: "p0-t1",
           name: "Note-Taking System: Obsidian or Notion",
-          detail: "Create a vault called 'Cybersecurity Notes'. Document every concept, tool cheat sheet, and lab write-up. Obsidian is offline, markdown-based, and ideal for linking concepts."
+          detail: "Create a vault called 'Cybersecurity Notes'. Document every concept, tool cheat sheet, and lab write-up. Obsidian is offline, markdown-based, and ideal for linking concepts.",
+          resources: [
+            { name: "Obsidian Official Download", type: "Tool", url: "https://obsidian.md", desc: "Free markdown note-taking app with offline graph view" },
+            { name: "Notion", type: "Tool", url: "https://www.notion.so", desc: "Cloud workspace for structured documentation" }
+          ]
         },
         {
           id: "p0-t2",
           name: "GitHub Account (Your Future Portfolio)",
-          detail: "Sign up at github.com. This is where you will commit your write-ups, automation scripts, and lab architectures."
+          detail: "Sign up at github.com. This is where you will commit your write-ups, automation scripts, and lab architectures.",
+          resources: [
+            { name: "GitHub Sign Up", type: "Platform", url: "https://github.com", desc: "Where you will host your write-ups and tool scripts" }
+          ]
         },
         {
           id: "p0-t3",
           name: "LinkedIn Profile (Public Learning Journey)",
-          detail: "Even a bare profile works to start. You will build and share weekly progress posts as you advance."
+          detail: "Even a bare profile works to start. You will build and share weekly progress posts as you advance.",
+          resources: [
+            { name: "LinkedIn", type: "Platform", url: "https://www.linkedin.com", desc: "Professional networking platform to document learning publicly" }
+          ]
         },
         {
           id: "p0-t4",
           name: "Virtualization Engine: VirtualBox or VMware Player",
-          detail: "VirtualBox (100% free open-source) or VMware Workstation Player (free for personal use). This hosts your target VMs and testing machines."
+          detail: "VirtualBox (100% free open-source) or VMware Workstation Player (free for personal use). This hosts your target VMs and testing machines.",
+          resources: [
+            { name: "Oracle VirtualBox", type: "Free Hypervisor", url: "https://www.virtualbox.org", desc: "Open-source hypervisor for running isolated virtual machines" },
+            { name: "VMware Workstation Player", type: "Hypervisor", url: "https://www.vmware.com", desc: "Free for personal non-commercial use" }
+          ]
         },
         {
           id: "p0-t5",
           name: "Kali Linux Virtual Machine",
-          detail: "Download the pre-built VirtualBox or VMware VM image from kali.org — the gold standard penetration testing distro packed with hundreds of tools."
+          detail: "Download the pre-built VirtualBox or VMware VM image from kali.org — the gold standard penetration testing distro packed with hundreds of tools.",
+          resources: [
+            { name: "Kali Linux VM Images", type: "Download", url: "https://www.kali.org/get-kali/#kali-virtual-machines", desc: "Official pre-built virtual appliance for VirtualBox & VMware" },
+            { name: "Kali Documentation", type: "Docs", url: "https://www.kali.org/docs/", desc: "Official guides on default credentials and tools" }
+          ]
         },
         {
           id: "p0-t6",
           name: "TryHackMe & Hack The Box Accounts",
-          detail: "Create free tier accounts at tryhackme.com and hackthebox.com for gamified browser-based and VPN-based security labs."
+          detail: "Create free tier accounts at tryhackme.com and hackthebox.com for gamified browser-based and VPN-based security labs.",
+          resources: [
+            { name: "TryHackMe Free Tier", type: "Lab Platform", url: "https://tryhackme.com", desc: "Hands-on guided cybersecurity rooms" },
+            { name: "Hack The Box Free Tier", type: "Lab Platform", url: "https://www.hackthebox.com", desc: "Hands-on penetration testing labs & academy" }
+          ]
         }
-      ],
-      resources: [
-        { name: "Obsidian", type: "Note-taking", desc: "Local markdown knowledge base", url: "https://obsidian.md" },
-        { name: "VirtualBox", type: "Virtualization", desc: "Free x86/AMD64 hypervisor", url: "https://www.virtualbox.org" },
-        { name: "Kali Linux", type: "Security OS", desc: "Pre-built VM image download", url: "https://www.kali.org/get-kali/#kali-virtual-machines" },
-        { name: "TryHackMe", type: "Lab Platform", desc: "Gamified security exercises", url: "https://tryhackme.com" },
-        { name: "Hack The Box", type: "Lab Platform", desc: "Hands-on cyber ranges", url: "https://www.hackthebox.com" }
       ],
       milestone: "Your Kali Linux VM boots cleanly, you can run terminal commands, and you have created your 'Cybersecurity Notes' repository."
     },
@@ -155,50 +113,75 @@ const ROADMAP_DATA = {
       badgeColor: "blue",
       summary: "You cannot skip this. The single biggest reason beginners stall out is trying to learn 'hacking' before understanding how computers and networks actually work.",
       description: "Cybersecurity is the defense and analysis of existing computer and network protocols. If you don't know how packets move or how an OS operates, security tools are just magic black boxes.",
+      overviewPoints: [
+        "Computer architecture, booting processes (UEFI/BIOS), CPU, memory, and file systems.",
+        "Master the 7 layers of OSI and 4 layers of TCP/IP cold.",
+        "Calculate IPv4/IPv6 subnets, CIDR notations, and private address spaces.",
+        "Learn core protocols: DNS, DHCP, HTTP/HTTPS, SSH, SMB, and common port numbers.",
+        "Learn Windows admin (Active Directory, GPOs) and Linux CLI (permissions, bash scripting)."
+      ],
       topics: [
         {
           id: "p1-t1",
           name: "Computer Architecture & OS Internals",
-          detail: "How a computer boots (BIOS/UEFI, bootloaders), CPU architecture, processes, memory management (RAM, stack, heap), and file systems (NTFS, ext4)."
+          detail: "How a computer boots (BIOS/UEFI, bootloaders), CPU architecture, processes, memory management (RAM, stack, heap), and file systems (NTFS, ext4).",
+          resources: [
+            { name: "CrashCourse Computer Science", type: "Video Series", url: "https://www.youtube.com/playlist?list=PL8dPuuaLjXtNlUrzyH5r6jN9ulIgZBpdo", desc: "Visual introduction to CPU architecture, RAM, and hardware registers" },
+            { name: "Microsoft Learn OS Fundamentals", type: "Free Course", url: "https://learn.microsoft.com", desc: "Official training on process management and memory allocation" }
+          ]
         },
         {
           id: "p1-t2",
           name: "OSI 7-Layer & TCP/IP 4-Layer Models",
-          detail: "Understand both cold. Know the difference between Layer 2 (Data Link / MAC), Layer 3 (Network / IP), Layer 4 (Transport / TCP/UDP), and Layer 7 (Application)."
+          detail: "Understand both cold. Know the difference between Layer 2 (Data Link / MAC), Layer 3 (Network / IP), Layer 4 (Transport / TCP/UDP), and Layer 7 (Application).",
+          resources: [
+            { name: "Professor Messer's Network+ (OSI Video)", type: "Video Course", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/the-osi-model-2/", desc: "Detailed breakdown of all 7 layers with practical encapsulation examples" },
+            { name: "freeCodeCamp Networking Full Course", type: "YouTube Full Course", url: "https://www.freecodecamp.org/news/computer-networking-course/", desc: "Free multi-hour deep dive into network models" }
+          ]
         },
         {
           id: "p1-t3",
           name: "IP Addressing & Subnetting",
-          detail: "IPv4 vs IPv6, CIDR notation (/24, /16, /30), public vs private IP ranges (RFC 1918), and subnet calculations until it is automatic."
+          detail: "IPv4 vs IPv6, CIDR notation (/24, /16, /30), public vs private IP ranges (RFC 1918), and subnet calculations until it is automatic.",
+          resources: [
+            { name: "Professor Messer Subnetting Playlist", type: "Video Tutorial", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/seven-second-subnetting-3/", desc: "Master the 7-second subnetting technique" },
+            { name: "SubnettingPractice.com", type: "Practice Tool", url: "https://subnettingpractice.com", desc: "Interactive quizzes to make subnetting automatic" }
+          ]
         },
         {
           id: "p1-t4",
           name: "Core Network Protocols & Common Ports",
-          detail: "DNS (53), DHCP (67/68), HTTP (80), HTTPS (443), SSH (22), Telnet (23), FTP (21), SMTP (25), SMB (445), RDP (3389), etc. Understand stateful connections and 3-way handshakes."
+          detail: "DNS (53), DHCP (67/68), HTTP (80), HTTPS (443), SSH (22), Telnet (23), FTP (21), SMTP (25), SMB (445), RDP (3389), etc. Understand stateful connections and 3-way handshakes.",
+          resources: [
+            { name: "Cisco Networking Academy — Intro to Networking", type: "Free Interactive", url: "https://www.netacad.com", desc: "Packet tracer exercises exploring real protocols" },
+            { name: "SpeedGuide Port Database", type: "Reference", url: "https://www.speedguide.net/ports.php", desc: "Comprehensive lookup for TCP/UDP port numbers" }
+          ]
         },
         {
           id: "p1-t5",
           name: "Network Hardware & Perimeter Defense",
-          detail: "Routers, switches, VLANs, firewalls (stateless vs stateful vs NGFW), NAT, and VPN technologies (IPsec, OpenVPN, WireGuard)."
+          detail: "Routers, switches, VLANs, firewalls (stateless vs stateful vs NGFW), NAT, and VPN technologies (IPsec, OpenVPN, WireGuard).",
+          resources: [
+            { name: "NetworkChuck - Network Hardware Explained", type: "YouTube", url: "https://www.youtube.com/@NetworkChuck", desc: "Visual breakdowns of routers, switches, and VLAN segmentation" }
+          ]
         },
         {
           id: "p1-t6",
           name: "Windows Administration Basics",
-          detail: "Active Directory fundamentals (Domains, Forests, OUs, Domain Controllers), Group Policy Objects (GPOs), Windows Event Viewer, and PowerShell basics."
+          detail: "Active Directory fundamentals (Domains, Forests, OUs, Domain Controllers), Group Policy Objects (GPOs), Windows Event Viewer, and PowerShell basics.",
+          resources: [
+            { name: "Microsoft Learn Windows Modules", type: "Free Course", url: "https://learn.microsoft.com", desc: "Official training on Active Directory administration" }
+          ]
         },
         {
           id: "p1-t7",
           name: "Linux Fundamentals & Command Line",
-          detail: "FHS directory structure (/etc, /var, /bin, /home), Linux file permissions (rwx, chmod, chown), package management (apt, dnf), and Bash scripting essentials."
+          detail: "FHS directory structure (/etc, /var, /bin, /home), Linux file permissions (rwx, chmod, chown), package management (apt, dnf), and Bash scripting essentials.",
+          resources: [
+            { name: "OverTheWire: Bandit (SSH Wargame)", type: "Hands-on Wargame", url: "https://overthewire.org/wargames/bandit/", desc: "Learn command-line Linux by solving 34+ progressive SSH challenges" },
+            { name: "Linux Journey", type: "Free Tutorial", url: "https://linuxjourney.com", desc: "Structured, interactive Linux fundamentals tutorial" }
+          ]
         }
-      ],
-      resources: [
-        { name: "Professor Messer's Network+", type: "Video Course", desc: "Full free video course aligned with CompTIA Network+", url: "https://www.professormesser.com/network-plus/n10-008/n10-008-video/n10-008-training-course/" },
-        { name: "Cisco NetAcad — Intro to Networking", type: "Interactive", desc: "Free, self-paced, hands-on with Cisco Packet Tracer", url: "https://www.netacad.com" },
-        { name: "freeCodeCamp — Networking Course", type: "Video Course", desc: "Comprehensive computer networking full course on YouTube", url: "https://www.freecodecamp.org/news/computer-networking-course/" },
-        { name: "Linux Journey", type: "Interactive Guide", desc: "Structured, interactive Linux fundamentals tutorial", url: "https://linuxjourney.com" },
-        { name: "OverTheWire: Bandit", type: "Wargame", desc: "Learn command-line Linux by solving 34+ progressive SSH challenges", url: "https://overthewire.org/wargames/bandit/" },
-        { name: "Microsoft Learn: Windows Modules", type: "Self-Paced", desc: "Official training on networking & Windows administration", url: "https://learn.microsoft.com" }
       ],
       milestone: "Can you explain what happens, step-by-step, when you type a URL into a browser and press Enter — from DNS resolution to TCP 3-way handshake, TLS negotiation, and HTTP response?"
     },
@@ -211,50 +194,71 @@ const ROADMAP_DATA = {
       badgeColor: "emerald",
       summary: "Understand the core principles, threats, defensive models, and governance frameworks that govern information security.",
       description: "Begins during your second month of networking study so you start connecting networking protocols to real attacks and defenses.",
+      overviewPoints: [
+        "The CIA Triad (Confidentiality, Integrity, Availability) and non-repudiation.",
+        "Risk management formulas: Risk = Threat × Vulnerability × Impact.",
+        "Authentication, Authorization, Accounting (AAA) & Identity and Access Management (IAM).",
+        "Cryptography: Symmetric vs Asymmetric encryption, SHA-256 hashing, PKI, and digital certificates.",
+        "Common cyber attacks: Phishing, ransomware, social engineering, DoS, MitM, SQLi, and XSS.",
+        "High-level governance: NIST CSF, ISO 27001, GDPR, HIPAA, and the Incident Response lifecycle."
+      ],
       topics: [
         {
           id: "p2-t1",
           name: "The CIA Triad & Security Architecture",
-          detail: "Confidentiality, Integrity, Availability, and secondary concepts like Non-Repudiation, Defense in Depth, and Least Privilege."
+          detail: "Confidentiality, Integrity, Availability, and secondary concepts like Non-Repudiation, Defense in Depth, and Least Privilege.",
+          resources: [
+            { name: "Professor Messer's Security+ (SY0-701)", type: "Video Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "The gold-standard complete free course covering CIA models" }
+          ]
         },
         {
           id: "p2-t2",
           name: "Risk Management & Threat Modeling",
-          detail: "Risk = Threat × Vulnerability × Impact; qualitative vs quantitative risk; likelihood, risk mitigation, transference, acceptance, and STRIDE model."
+          detail: "Risk = Threat × Vulnerability × Impact; qualitative vs quantitative risk; likelihood, risk mitigation, transference, acceptance, and STRIDE model.",
+          resources: [
+            { name: "NIST Special Publication 800-30", type: "Official Standard", url: "https://csrc.nist.gov/publications/detail/sp/800-30/rev-1/final", desc: "Guide for Conducting Risk Assessments" }
+          ]
         },
         {
           id: "p2-t3",
           name: "Authentication, Authorization, Accounting (AAA)",
-          detail: "Identity and Access Management (IAM), Multi-Factor Authentication (MFA), Single Sign-On (SSO), Kerberos, OAuth 2.0, and SAML."
+          detail: "Identity and Access Management (IAM), Multi-Factor Authentication (MFA), Single Sign-On (SSO), Kerberos, OAuth 2.0, and SAML.",
+          resources: [
+            { name: "Google Cybersecurity Professional Certificate", type: "Coursera (Free Audit)", url: "https://www.coursera.org/professional-certificates/google-cybersecurity", desc: "Free to audit modules on IAM, access controls, and security operations" }
+          ]
         },
         {
           id: "p2-t4",
           name: "Cryptography & PKI Fundamentals",
-          detail: "Symmetric (AES, ChaCha20) vs Asymmetric encryption (RSA, ECC), cryptographic hashing (SHA-256), salt, digital signatures, and Public Key Infrastructure (CA, certificates, CRL)."
+          detail: "Symmetric (AES, ChaCha20) vs Asymmetric encryption (RSA, ECC), cryptographic hashing (SHA-256), salt, digital signatures, and Public Key Infrastructure (CA, certificates, CRL).",
+          resources: [
+            { name: "Professor Messer Cryptography Series", type: "Video Lessons", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "Clear explanations of symmetric, asymmetric, and hashing mechanics" }
+          ]
         },
         {
           id: "p2-t5",
           name: "Common Attack Vectors & Exploits",
-          detail: "Phishing & social engineering, malware varieties (viruses, worms, trojans, ransomware), DoS/DDoS, Man-in-the-Middle (MitM), SQL injection (SQLi), and Cross-Site Scripting (XSS)."
+          detail: "Phishing & social engineering, malware varieties (viruses, worms, trojans, ransomware), DoS/DDoS, Man-in-the-Middle (MitM), SQL injection (SQLi), and Cross-Site Scripting (XSS).",
+          resources: [
+            { name: "OWASP Top 10 Official Documentation", type: "Standard Reference", url: "https://owasp.org/www-project-top-ten/", desc: "The definitive guide to the top 10 web application vulnerabilities" }
+          ]
         },
         {
           id: "p2-t6",
           name: "Governance, Risk & Compliance (GRC)",
-          detail: "High-level understanding of regulatory frameworks: NIST Cybersecurity Framework (CSF), ISO 27001, GDPR, HIPAA, PCI-DSS, and SOC 2."
+          detail: "High-level understanding of regulatory frameworks: NIST Cybersecurity Framework (CSF), ISO 27001, GDPR, HIPAA, PCI-DSS, and SOC 2.",
+          resources: [
+            { name: "NIST CSF 2.0 Documentation", type: "Framework", url: "https://www.nist.gov/cyberframework", desc: "The official industry standard risk framework. Read once even as a beginner." }
+          ]
         },
         {
           id: "p2-t7",
           name: "Incident Response Lifecycle & BCDR",
-          detail: "The 6 phases of incident response (Preparation, Detection, Containment, Eradication, Recovery, Lessons Learned), plus Business Continuity & Disaster Recovery basics."
+          detail: "The 6 phases of incident response (Preparation, Detection, Containment, Eradication, Recovery, Lessons Learned), plus Business Continuity & Disaster Recovery basics.",
+          resources: [
+            { name: "Cisco Intro & Cybersecurity Essentials", type: "NetAcad Course", url: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity", desc: "Incident triage and disaster recovery concepts with free Credly badge" }
+          ]
         }
-      ],
-      resources: [
-        { name: "Professor Messer's Security+ (SY0-701)", type: "Video Course", desc: "Gold-standard complete free video course covering the full Security+ syllabus", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/" },
-        { name: "Google Cybersecurity Certificate", type: "Coursera Program", desc: "8-course program (~170 hrs) covering Python, Linux, SQL, SIEM. Free to audit all content!", url: "https://www.coursera.org/professional-certificates/google-cybersecurity" },
-        { name: "Cisco Intro to Cybersecurity", type: "Course + Badge", desc: "Official Cisco introduction with free verifiable Credly digital badge", url: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity" },
-        { name: "Cisco Cybersecurity Essentials", type: "Course", desc: "Deeper dive into security technologies, architectures, and operations", url: "https://www.netacad.com/courses/cybersecurity/cybersecurity-essentials" },
-        { name: "NIST CSF Official Documentation", type: "Framework", desc: "The official industry standard risk framework. Read once even as a beginner.", url: "https://www.nist.gov/cyberframework" },
-        { name: "OWASP Top 10", type: "Standard", desc: "The definitive reference for the top 10 web application security risks", url: "https://owasp.org/www-project-top-ten/" }
       ],
       milestone: "You can identify the CIA impact of different breach scenarios and explain symmetric vs asymmetric cryptography without hesitating."
     },
@@ -267,51 +271,73 @@ const ROADMAP_DATA = {
       badgeColor: "amber",
       summary: "This is where you actually become employable. Reading alone does not get you hired — hands-on labs and CTFs do.",
       description: "Never treat practice as a separate phase that waits for theory to end. The moment you start learning Linux and networking, start cracking beginner boxes and analyzing traffic.",
+      overviewPoints: [
+        "TryHackMe 'Pre Security' and 'Complete Beginner' guided pathways.",
+        "Hack The Box 'Starting Point' tier for fundamental pentesting mechanics.",
+        "OverTheWire Bandit (Linux) and Natas (Web Security) wargames.",
+        "PortSwigger Web Security Academy for hands-on Burp Suite & web exploits.",
+        "LetsDefend & CyberDefenders for defensive SOC alert analysis & PCAP inspection.",
+        "Build an isolated virtual home lab with Kali Linux and deliberately vulnerable VMs (DVWA, Metasploitable)."
+      ],
       topics: [
         {
           id: "p3-t1",
           name: "TryHackMe Guided Rooms",
-          detail: "Begin with the free 'Pre Security' path, then progress through 'Complete Beginner'. Learn Nmap, Wireshark, Burp Suite, and basic exploitation in browser or via OpenVPN."
+          detail: "Begin with the free 'Pre Security' path, then progress through 'Complete Beginner'. Learn Nmap, Wireshark, Burp Suite, and basic exploitation in browser or via OpenVPN.",
+          resources: [
+            { name: "TryHackMe Pre Security Path", type: "Guided Labs", url: "https://tryhackme.com/path/outline/presecurity", desc: "Interactive beginner rooms covering networking and web concepts" }
+          ]
         },
         {
           id: "p3-t2",
           name: "Hack The Box 'Starting Point'",
-          detail: "Free guided track teaching core pentesting mechanics: connecting via OpenVPN, network enumeration, exploiting Telnet, FTP, Redis, and acquiring user/root flags."
+          detail: "Free guided track teaching core pentesting mechanics: connecting via OpenVPN, network enumeration, exploiting Telnet, FTP, Redis, and acquiring user/root flags.",
+          resources: [
+            { name: "HTB Starting Point Track", type: "Target Machines", url: "https://www.hackthebox.com", desc: "Free guided machines designed for brand new penetration testers" }
+          ]
         },
         {
           id: "p3-t3",
           name: "OverTheWire Wargames",
-          detail: "Bandit for mastering Linux navigation and file parsing; Natas for understanding web security, server-side code execution, and SQL injection."
+          detail: "Bandit for mastering Linux navigation and file parsing; Natas for understanding web security, server-side code execution, and SQL injection.",
+          resources: [
+            { name: "OverTheWire Natas", type: "Web Security Labs", url: "https://overthewire.org/wargames/natas/", desc: "Hands-on wargame teaching web application vulnerabilities level by level" }
+          ]
         },
         {
           id: "p3-t4",
           name: "PortSwigger Web Security Academy",
-          detail: "100% free, crafted by the creators of Burp Suite. Features hundreds of hands-on interactive labs spanning SQLi, XSS, CSRF, SSRF, authentication bypass, and JWT attacks."
+          detail: "100% free, crafted by the creators of Burp Suite. Features hundreds of hands-on interactive labs spanning SQLi, XSS, CSRF, SSRF, authentication bypass, and JWT attacks.",
+          resources: [
+            { name: "PortSwigger Web Security Academy", type: "Best-in-Class Labs", url: "https://portswigger.net/web-security", desc: "The single best free web security training in the industry" }
+          ]
         },
         {
           id: "p3-t5",
           name: "picoCTF (Carnegie Mellon University)",
-          detail: "Free, beginner-friendly Capture The Flag platform available year-round. Great for web exploitation, cryptography, binary exploitation, and reverse engineering."
+          detail: "Free, beginner-friendly Capture The Flag platform available year-round. Great for web exploitation, cryptography, binary exploitation, and reverse engineering.",
+          resources: [
+            { name: "picoCTF Archive", type: "CTF Competition", url: "https://picoctf.org", desc: "Accessible beginner cyber challenge archive" }
+          ]
         },
         {
           id: "p3-t6",
           name: "LetsDefend & CyberDefenders (Blue Team Labs)",
-          detail: "Free tier hands-on SOC analyst simulation: triage security alerts, analyze PCAP packet captures in Wireshark, examine endpoint logs, and detect malicious PowerShell."
+          detail: "Free tier hands-on SOC analyst simulation: triage security alerts, analyze PCAP packet captures in Wireshark, examine endpoint logs, and detect malicious PowerShell.",
+          resources: [
+            { name: "LetsDefend SOC Simulator", type: "Blue Team Labs", url: "https://letsdefend.io", desc: "Realistic SOC tickets, alert triage, and log investigation" },
+            { name: "CyberDefenders Challenges", type: "Artifact Analysis", url: "https://cyberdefenders.org", desc: "Memory dumps, PCAP files, and incident response exercises" }
+          ]
         },
         {
           id: "p3-t7",
           name: "Build Your Own Vulnerable Home Lab",
-          detail: "Set up VirtualBox with Kali Linux + target VMs (Metasploitable 2 or DVWA). Practice network scanning, service enumeration, and exploitation in a strictly isolated, legal environment."
+          detail: "Set up VirtualBox with Kali Linux + target VMs (Metasploitable 2 or DVWA). Practice network scanning, service enumeration, and exploitation in a strictly isolated, legal environment.",
+          resources: [
+            { name: "Metasploitable 2 Download", type: "Vulnerable VM", url: "https://sourceforge.net/projects/metasploitable/", desc: "Intentionally vulnerable Linux virtual machine for lab scanning" },
+            { name: "DVWA (Damn Vulnerable Web App)", type: "Web App Target", url: "https://github.com/digininja/DVWA", desc: "PHP/MySQL web app that is damn vulnerable for testing tools" }
+          ]
         }
-      ],
-      resources: [
-        { name: "TryHackMe", type: "Gamified Labs", desc: "Interactive security walkthroughs & CTF rooms", url: "https://tryhackme.com" },
-        { name: "Hack The Box Starting Point", type: "Beginner Range", desc: "Step-by-step introduction to target exploitation", url: "https://www.hackthebox.com" },
-        { name: "PortSwigger Web Security Academy", type: "Web Pentest", desc: "World-class free web security labs from Burp Suite makers", url: "https://portswigger.net/web-security" },
-        { name: "OverTheWire Natas", type: "Web Wargame", desc: "Hands-on web server security challenges", url: "https://overthewire.org/wargames/natas/" },
-        { name: "picoCTF", type: "CTF Platform", desc: "Carnegie Mellon's accessible cyber competition platform", url: "https://picoctf.org" },
-        { name: "LetsDefend", type: "SOC Simulator", desc: "Real-world SOC alert investigation platform", url: "https://letsdefend.io" },
-        { name: "CyberDefenders", type: "Defensive CTF", desc: "Blue team challenges and artifact analysis", url: "https://cyberdefenders.org" }
       ],
       milestone: "You have completed 20+ TryHackMe rooms, solved Bandit levels 1-15, and solved 5+ PortSwigger labs with documented write-ups in your notes."
     },
@@ -324,7 +350,23 @@ const ROADMAP_DATA = {
       badgeColor: "purple",
       summary: "Cybersecurity is vast. After sampling the basics, select a focused path to optimize your portfolio and certifications.",
       description: "SOC Analyst is the most common and accessible entry-level role with high volume hiring. Pentesting has fewer entry-level spots, but SOC experience builds the perfect bridge into offensive roles.",
-      specializationIntro: "Select a track below to explore typical job titles, day-to-day work, core tools, and tailored progression.",
+      overviewPoints: [
+        "Blue Team / SOC: Threat detection, alert monitoring, and incident response (highest entry demand).",
+        "Red Team / Pentesting: Ethical hacking, finding exploits, and writing vulnerability reports.",
+        "Cloud Security: Hardening AWS, Azure, and GCP environments, IAM, and container safety.",
+        "GRC: Audits, compliance frameworks (ISO, NIST), policies, and enterprise risk management.",
+        "DFIR: Digital forensics, memory analysis, malware triage, and post-breach investigation."
+      ],
+      topics: [
+        {
+          id: "p4-t1",
+          name: "Evaluate Specialization Interests",
+          detail: "Assess whether you prefer active defense (Blue Team), exploit analysis (Red Team), infrastructure hardening (Cloud), or compliance policies (GRC).",
+          resources: [
+            { name: "CyberSeek Career Pathway Tool", type: "Career Data", url: "https://www.cyberseek.org/pathway.html", desc: "Interactive mapping of cybersecurity job titles, salaries, and required credentials" }
+          ]
+        }
+      ],
       milestone: "You have selected a primary specialization track and aligned your hands-on practice, portfolio projects, and target certs with it."
     },
     {
@@ -336,6 +378,48 @@ const ROADMAP_DATA = {
       badgeColor: "green",
       summary: "Earn legitimate, verifiable credentials at zero cost to prove interest on LinkedIn and resume while saving for paid certifications.",
       description: "Important honesty check: The ISC2 CC free voucher program ended on May 20, 2026. Do not fall for outdated blog posts! Below is what is genuinely free right now.",
+      overviewPoints: [
+        "Fact Check: ISC2 Certified in Cybersecurity (CC) free exam program ended May 20, 2026. Do not chase expired vouchers.",
+        "Fortinet NSE 1, 2, 3: Three free certs on firewalls and network fundamentals with 2-year validity.",
+        "Cisco Introduction to Cybersecurity: Free NetAcad course with a verifiable digital Credly badge.",
+        "AttackIQ Academy: Six free modular courses on MITRE ATT&CK, threat intel, and purple teaming.",
+        "Centri BTJA: Hands-on defensive coursework covering Wireshark, CyberChef, and Redline.",
+        "IBM SkillsBuild & OPSWAT CIP: Free badges in fundamentals and critical infrastructure security."
+      ],
+      topics: [
+        {
+          id: "p5-t1",
+          name: "Fortinet NSE 1, 2, 3 Pathways",
+          detail: "Complete Fortinet's self-paced fundamentals courses and earn certifications with included exams valid for 2 years.",
+          resources: [
+            { name: "Fortinet Training Institute", type: "Free Official Cert", url: "https://training.fortinet.com", desc: "Enroll in NSE 1-3 modules at zero cost" }
+          ]
+        },
+        {
+          id: "p5-t2",
+          name: "Cisco NetAcad Credly Digital Badge",
+          detail: "Pass the Cisco Introduction to Cybersecurity final assessment to unlock your official Credly credential.",
+          resources: [
+            { name: "Cisco NetAcad Portal", type: "Free Badge", url: "https://www.netacad.com/courses/cybersecurity/introduction-cybersecurity", desc: "Enroll and claim your verified Credly badge" }
+          ]
+        },
+        {
+          id: "p5-t3",
+          name: "AttackIQ Academy Foundations",
+          detail: "Earn digital badges in breach & attack simulation, MITRE ATT&CK mapping, and threat intelligence.",
+          resources: [
+            { name: "AttackIQ Academy", type: "Free Badges + CPE", url: "https://academy.attackiq.com", desc: "Free enterprise security education modules" }
+          ]
+        },
+        {
+          id: "p5-t4",
+          name: "Centri Blue Team Junior Analyst",
+          detail: "Complete the 6 free defensive courses utilizing Wireshark, CyberChef, and Steghide.",
+          resources: [
+            { name: "Centri BTJA Bundle", type: "Free Defensive Pathway", url: "https://centri.org/courses/blue-team-junior-analyst-pathway-bundle", desc: "Hands-on blue team training pathway" }
+          ]
+        }
+      ],
       honestyAlert: {
         title: "Important 2026 Fact Check: Expired 'Free' Certifications",
         content: "Several programs frequently recommended in older YouTube videos and blogs are NO LONGER FREE as of 2026:\n• ISC2 Certified in Cybersecurity (CC): Free exam program closed May 20, 2026. New candidates must now pay standard exam fees.\n• EC-Council Essentials: Free exams discontinued.\n• Palo Alto PCCET & MITRE ATT&CK Defender: No longer free entry pathways.\nDon't waste time chasing dead voucher links!"
@@ -351,6 +435,24 @@ const ROADMAP_DATA = {
       badgeColor: "red",
       summary: "This is the single certification that actually moves the needle on junior job applications and passes HR screening algorithms.",
       description: "CompTIA Security+ (SY0-701) is recognized globally and fulfills DoD 8570 / 8140 baseline compliance in the US. It validates core security readiness.",
+      overviewPoints: [
+        "The #1 baseline credential required or preferred in entry-level SOC and analyst postings.",
+        "Voucher cost is ~$400, but student discounts are available via the CompTIA Academic Marketplace.",
+        "Study 100% free with Professor Messer's complete SY0-701 video series and ExamCompass tests.",
+        "If budget is tight, do not stall! Keep building your portfolio, SIEM lab, and TryHackMe rooms."
+      ],
+      topics: [
+        {
+          id: "p6-t1",
+          name: "CompTIA Security+ SY0-701 Preparation",
+          detail: "Cover all five exam domains: General Security Concepts, Threats/Vulnerabilities, Security Architecture, Operations & Incident Response, Governance/Risk/Compliance.",
+          resources: [
+            { name: "Professor Messer's SY0-701 Course", type: "Free Full Course", url: "https://www.professormesser.com/security-plus/sy0-701/sy0-701-video/sy0-701-training-course/", desc: "Free video for every single exam objective" },
+            { name: "ExamCompass Security+ Practice", type: "Free Practice Tests", url: "https://www.examcompass.com/comptia/security-plus-certification/free-security-plus-practice-tests", desc: "Topic-by-topic multiple-choice quizzes" },
+            { name: "CompTIA Academic Marketplace", type: "Student Discounts", url: "https://academic-store.comptia.org", desc: "Heavily discounted vouchers with an active student email" }
+          ]
+        }
+      ],
       details: [
         {
           label: "Voucher Cost",
@@ -362,15 +464,11 @@ const ROADMAP_DATA = {
         },
         {
           label: "Discounts & Vouchers",
-          value: "CompTIA offers student discounts with an active .edu email address via the CompTIA Academic Marketplace. Check your university or local community college!"
+          value: "CompTIA offers student discounts with an active student email address via the CompTIA Academic Marketplace."
         },
         {
           label: "What If Money Is Blocked?",
           value: "Do NOT pause your learning! Continue building your GitHub portfolio, setting up your home lab SIEM, and completing TryHackMe rooms. Skills come first."
-        },
-        {
-          label: "Lower-Cost Alternative",
-          value: "Microsoft SC-900 (Security, Compliance & Identity Fundamentals): Exam fee is ~$99, and the complete official training is free on Microsoft Learn."
         }
       ],
       milestone: "Score 85%+ consistently on practice exam questions and sit the official Security+ SY0-701 examination."
@@ -384,6 +482,24 @@ const ROADMAP_DATA = {
       badgeColor: "indigo",
       summary: "Transition from broad security fundamentals to advanced, specialization-specific tooling, realistic simulations, and recognized industry certs.",
       description: "Dive deep into the exact tools, architectures, and certifications required by employers in your chosen career track.",
+      overviewPoints: [
+        "Blue Team: Master Splunk/ELK queries, alert triage on LetsDefend, target Blue Team Level 1 (BTL1).",
+        "Red Team: Master Burp Suite Pro, web exploitation on PortSwigger, target eJPT or PNPT.",
+        "Cloud Security: AWS Practitioner or Azure AZ-900, master IAM policies and Terraform configs.",
+        "GRC: Deep dive into NIST CSF 2.0 and NIST 800-53 controls; long-term target: CISA or CRISC."
+      ],
+      topics: [
+        {
+          id: "p7-t1",
+          name: "Deep Tool Specialization & Advanced Certs",
+          detail: "Master enterprise security tooling aligned with your chosen track (Splunk, Wireshark, Burp Suite, CloudTrail, or GRC frameworks) and prepare for practical scenario exams.",
+          resources: [
+            { name: "Security Blue Team (BTL1)", type: "Practical Exam", url: "https://securityblue.team/why-btl1/", desc: "24-hour practical incident response exam with live evidence analysis" },
+            { name: "eJPT Certification (INE)", type: "Practical Pentest", url: "https://ine.com/certifications/ejpt-certification", desc: "Hands-on network penetration testing certification" },
+            { name: "AWS Cloud Practitioner Essentials", type: "Free AWS Training", url: "https://skillbuilder.aws", desc: "Official free cloud fundamentals curriculum" }
+          ]
+        }
+      ],
       milestone: "You have built specialization-specific projects (e.g. SIEM lab, pentest reports, cloud security posture audit) and prepared for your specialized credential."
     },
     {
@@ -395,22 +511,45 @@ const ROADMAP_DATA = {
       badgeColor: "cyan",
       summary: "Certifications prove you studied. A portfolio proves you can actually execute the job. It's the decisive factor between an interview and silence.",
       description: "In a competitive market, candidates with public technical write-ups, home lab demonstrations, and code repositories stand far ahead of applicants who only hold paper credentials.",
-      pillars: [
+      overviewPoints: [
+        "Publish structured CTF & TryHackMe machine write-ups on GitHub explaining your methodology.",
+        "Build a virtual home SOC lab ingesting Sysmon logs into Splunk or ELK, and write a technical case study.",
+        "Document weekly learning reflections on LinkedIn to get noticed by recruiters.",
+        "Put verified TryHackMe and Hack The Box badges directly in your resume header."
+      ],
+      topics: [
         {
-          title: "1. GitHub CTF & Machine Write-Ups",
-          desc: "Publish structured, well-formatted markdown write-ups for every TryHackMe room, Hack The Box machine, or OverTheWire level you solve. Document: What was the vulnerability? How did you discover it? How did you exploit or remediate it? What did you learn?"
+          id: "p8-t1",
+          name: "1. GitHub CTF & Machine Write-Ups",
+          detail: "Publish structured, well-formatted markdown write-ups for every TryHackMe room, Hack The Box machine, or OverTheWire level you solve. Document: What was the vulnerability? How did you discover it? How did you exploit or remediate it? What did you learn?",
+          resources: [
+            { name: "Example Markdown Writeup Template", type: "Guide", url: "https://github.com", desc: "How to structure professional CTF walkthroughs on GitHub" }
+          ]
         },
         {
-          title: "2. The Home SOC Lab Project (Highest ROI for Blue Team)",
-          desc: "Set up a virtual SIEM (free-tier Splunk or the open-source Elastic / ELK stack) ingesting Sysmon logs, Windows Event logs, or Linux auditd logs from target VMs. Trigger an attack (e.g. brute force, Atomic Red Team script), create an alert rule, and write a full case study on LinkedIn / GitHub."
+          id: "p8-t2",
+          name: "2. The Home SOC Lab Project (Highest ROI)",
+          detail: "Set up a virtual SIEM (free-tier Splunk or the open-source Elastic / ELK stack) ingesting Sysmon logs, Windows Event logs, or Linux auditd logs from target VMs. Trigger an attack, create an alert rule, and write a full case study on LinkedIn / GitHub.",
+          resources: [
+            { name: "Splunk Free Tier Download", type: "Enterprise SIEM", url: "https://www.splunk.com", desc: "Free enterprise license allowing up to 500MB/day of log ingestion" },
+            { name: "Elastic Security Free Guide", type: "Open Source SIEM", url: "https://www.elastic.co/security", desc: "Deploying Elastic agent and ingesting Windows Sysmon logs" }
+          ]
         },
         {
-          title: "3. Public Technical Learning Logs",
-          desc: "Share your weekly journey on LinkedIn or a personal blog: 'Week 12: How I configured an ELK SIEM and detected credential dumping.' Technical recruiters and hiring managers actively search for candidates demonstrating genuine curiosity and communication ability."
+          id: "p8-t3",
+          name: "3. Public Technical Learning Logs",
+          detail: "Share your weekly journey on LinkedIn or a personal blog: 'Week 12: How I configured an ELK SIEM and detected credential dumping.' Technical recruiters and hiring managers actively search for candidates demonstrating genuine curiosity and communication ability.",
+          resources: [
+            { name: "LinkedIn Articles", type: "Blogging", url: "https://www.linkedin.com", desc: "Publishing long-form technical walkthroughs directly on LinkedIn" }
+          ]
         },
         {
-          title: "4. Resume & Profile Optimization",
-          desc: "Embed your TryHackMe and Hack The Box public profile badges directly in your resume header and LinkedIn profile. Technical managers inspect these profiles to verify real hands-on capability."
+          id: "p8-t4",
+          name: "4. Resume & Profile Optimization",
+          detail: "Embed your TryHackMe and Hack The Box public profile badges directly in your resume header and LinkedIn profile. Technical managers inspect these profiles to verify real hands-on capability.",
+          resources: [
+            { name: "TryHackMe Public Profile", type: "Badge Embed", url: "https://tryhackme.com", desc: "Generate public verifiable profile badges for resumes" }
+          ]
         }
       ],
       milestone: "Your GitHub contains 5+ comprehensive lab write-ups, your home SIEM/lab project is fully documented with architecture diagrams, and your LinkedIn profile showcases your continuous learning."

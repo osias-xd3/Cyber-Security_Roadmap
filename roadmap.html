@@ -3,10 +3,10 @@
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Complete Roadmap Curriculum | All Phases & Details</title>
+  <title>Complete Roadmap Curriculum | All Phases & Topics</title>
   
   <!-- SEO & Social Meta Tags -->
-  <meta name="description" content="The exhaustive step-by-step cybersecurity master curriculum. Detailed subtopics, verified free courses, hands-on labs, active certifications, and progress tracking.">
+  <meta name="description" content="The exhaustive step-by-step cybersecurity master curriculum with left sidebar navigation index and integrated resource dropdowns by Muhammad Awais.">
   <meta property="og:title" content="Complete Cybersecurity Roadmap Curriculum">
   <meta property="og:description" content="The exhaustive, step-by-step guide with interactive checkboxes, labs, and verified certifications.">
   <meta property="og:type" content="website">
@@ -58,7 +58,7 @@
         </div>
 
         <button class="btn-icon" id="themeToggleBtn" aria-label="Toggle Theme" title="Toggle Light/Dark Theme">
-          <!-- Icon injected by app.js -->
+          <!-- Injected by app.js -->
         </button>
 
         <button class="btn-icon mobile-menu-btn" id="mobileMenuBtn" aria-label="Open Navigation Menu">
@@ -78,7 +78,7 @@
 
   <main>
     <!-- Master Curriculum Hero -->
-    <section class="hero-section" style="padding: 3.5rem 0 2.5rem;">
+    <section class="hero-section" style="padding: 3.5rem 0 2rem;">
       <div class="container">
         <div class="hero-pill">
           <span class="pulse-dot"></span>
@@ -90,171 +90,181 @@
         </h1>
         
         <p class="hero-subtitle">
-          Every subtopic, verified free learning resource, hands-on lab, active certification, and career milestone. Check off items as you master them to track your progress.
+          Every phase, topic, and checkpoint with integrated resource dropdowns. Use the sidebar index on the left to jump quickly to any phase.
         </p>
 
         <div class="hero-cta-group">
-          <a href="#first30" class="btn btn-primary">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>
-            First 30 Days Cockpit
-          </a>
-          <a href="#phases" class="btn btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><path d="M2 3h6a4 4 0 0 1 4 4v14a3 3 0 0 0-3-3H2z"></path><path d="M22 3h-6a4 4 0 0 0-4 4v14a3 3 0 0 1 3-3h7z"></path></svg>
-            Phases 0–8
-          </a>
-          <a href="#specializations" class="btn btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="12" r="10"></circle><polygon points="16.24 7.76 14.12 14.12 7.76 16.24 9.88 9.88 16.24 7.76"></polygon></svg>
-            Specializations
-          </a>
-          <a href="#certifications" class="btn btn-outline">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="7"></circle><polyline points="8.21 13.89 7 23 12 20 17 23 15.79 13.88"></polyline></svg>
-            Certifications
-          </a>
-          <button class="btn btn-outline" id="printRoadmapBtn" title="Export or Print Roadmap as PDF">
-            <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
+          <button class="btn btn-outline" id="expandAllPhasesBtn" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
+            Expand All Phases
+          </button>
+          <button class="btn btn-outline" id="collapseAllPhasesBtn" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
+            Collapse All Phases
+          </button>
+          <button class="btn btn-outline" id="printRoadmapBtn" title="Export or Print Roadmap as PDF" style="font-size: 0.85rem; padding: 0.55rem 1.1rem;">
+            <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="6 9 6 2 18 2 18 9"></polyline><path d="M6 18H4a2 2 0 0 1-2-2v-5a2 2 0 0 1 2-2h16a2 2 0 0 1 2 2v5a2 2 0 0 1-2 2h-2"></path><rect x="6" y="14" width="12" height="8"></rect></svg>
             Print / PDF
           </button>
         </div>
       </div>
     </section>
 
-    <!-- Section 1: First 30 Days Action Checklist -->
-    <section class="section" id="first30">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Quick Start Cockpit</span>
-          <h2 class="section-title">Your First 30 Days — Action Checklist</h2>
-          <p class="section-subtitle">
-            Tackle these 7 foundational items during your first month. Check each box as you complete it — your progress saves automatically in your browser.
-          </p>
-        </div>
+    <!-- Main Content Area with Sticky Left Sidebar Index -->
+    <div class="container">
+      <div class="roadmap-layout">
+        
+        <!-- Left Sidebar Index (Table of Contents) -->
+        <aside class="roadmap-sidebar" id="roadmapSidebar">
+          <div class="sidebar-heading">
+            <span>Course Index</span>
+            <span style="font-size: 0.65rem; color: var(--text-subtle);">9 Phases</span>
+          </div>
 
-        <div class="checklist-grid" id="checklistContainer">
-          <!-- Populated dynamically by app.js -->
+          <nav class="sidebar-nav-list" id="sidebarNavList" aria-label="Roadmap Sections">
+            <a href="#phase-card-0" class="sidebar-nav-item active" data-nav-target="phase-card-0">
+              <span>Phase 0: Setup</span>
+              <span class="sidebar-phase-badge">Wk 1</span>
+            </a>
+            <a href="#phase-card-1" class="sidebar-nav-item" data-nav-target="phase-card-1">
+              <span>Phase 1: IT & Network</span>
+              <span class="sidebar-phase-badge">Mo 1-3</span>
+            </a>
+            <a href="#phase-card-2" class="sidebar-nav-item" data-nav-target="phase-card-2">
+              <span>Phase 2: Core Concepts</span>
+              <span class="sidebar-phase-badge">Mo 2-4</span>
+            </a>
+            <a href="#phase-card-3" class="sidebar-nav-item" data-nav-target="phase-card-3">
+              <span>Phase 3: Hands-On Labs</span>
+              <span class="sidebar-phase-badge">Ongoing</span>
+            </a>
+            <a href="#phase-card-4" class="sidebar-nav-item" data-nav-target="phase-card-4">
+              <span>Phase 4: Specialization</span>
+              <span class="sidebar-phase-badge">Mo 4-6</span>
+            </a>
+            <a href="#phase-card-5" class="sidebar-nav-item" data-nav-target="phase-card-5">
+              <span>Phase 5: Free Certs</span>
+              <span class="sidebar-phase-badge">Mo 2-6</span>
+            </a>
+            <a href="#phase-card-6" class="sidebar-nav-item" data-nav-target="phase-card-6">
+              <span>Phase 6: CompTIA Sec+</span>
+              <span class="sidebar-phase-badge">Mo 5-8</span>
+            </a>
+            <a href="#phase-card-7" class="sidebar-nav-item" data-nav-target="phase-card-7">
+              <span>Phase 7: Go Deeper</span>
+              <span class="sidebar-phase-badge">Mo 6-12</span>
+            </a>
+            <a href="#phase-card-8" class="sidebar-nav-item" data-nav-target="phase-card-8">
+              <span>Phase 8: Portfolio Lab</span>
+              <span class="sidebar-phase-badge">Mo 3+</span>
+            </a>
+
+            <div class="sidebar-divider"></div>
+
+            <div class="sidebar-heading" style="margin-top: 0.5rem;">
+              <span>Key Resources</span>
+            </div>
+
+            <a href="#specializations" class="sidebar-nav-item" data-nav-target="specializations">
+              <span>🎯 5 Career Tracks</span>
+            </a>
+            <a href="#certifications" class="sidebar-nav-item" data-nav-target="certifications">
+              <span>📜 Certifications Hub</span>
+            </a>
+            <a href="#creators" class="sidebar-nav-item" data-nav-target="creators">
+              <span>📺 YouTube Mentors</span>
+            </a>
+          </nav>
+        </aside>
+
+        <!-- Right Main Curriculum Content -->
+        <div class="roadmap-main-content">
+          
+          <!-- Phases 0 Through 8 Container (With Integrated Topic Resource Dropdowns) -->
+          <div class="phases-wrapper" id="phasesContainer">
+            <!-- Dynamically populated from roadmap-data.js by app.js -->
+          </div>
+
+          <!-- Specialization Tracks Explorer -->
+          <section class="section" id="specializations" style="margin-top: 3rem;">
+            <div class="section-head">
+              <span class="section-tag">Career Paths (Phase 4 & 7)</span>
+              <h2 class="section-title">Specialization Tracks Explorer</h2>
+              <p class="section-subtitle">
+                Select any track below to compare job titles, daily tools, verified free labs, and paid certification goals.
+              </p>
+            </div>
+
+            <div class="tracks-explorer">
+              <div class="track-tabs" id="trackTabsContainer">
+                <!-- Populated by app.js -->
+              </div>
+              <div id="trackDetailsContainer">
+                <!-- Populated by app.js -->
+              </div>
+            </div>
+          </section>
+
+          <!-- Certifications Directory & Fact Check -->
+          <section class="section" id="certifications">
+            <div class="section-head">
+              <span class="section-tag">Credentials Hub</span>
+              <h2 class="section-title">Certifications Directory & 2026 Reality Check</h2>
+              <p class="section-subtitle">
+                Below is what is verified genuinely free right now, alongside high-value paid certifications worth saving for.
+              </p>
+            </div>
+
+            <!-- Prominent Expired Certs Warning Banner -->
+            <div class="honesty-banner">
+              <div class="honesty-head">
+                <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
+                2026 Fact Check: Popular "Free Certifications" That Are No Longer Free
+              </div>
+              <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
+                Do not waste hours chasing expired promotional vouchers you see in older Reddit threads or YouTube tutorials:
+              </p>
+              <div class="expired-grid" id="expiredCertsGrid">
+                <!-- Populated by app.js -->
+              </div>
+            </div>
+
+            <!-- Filter & Search Toolbar -->
+            <div class="toolbar-wrap">
+              <div class="filter-pills">
+                <button class="filter-btn active" data-cert-filter="all">All Certifications</button>
+                <button class="filter-btn" data-cert-filter="free">100% Free Verified</button>
+                <button class="filter-btn" data-cert-filter="training-only">Free Training / Paid Exam</button>
+                <button class="filter-btn" data-cert-filter="paid">Paid Industry Targets</button>
+              </div>
+              <div class="search-box">
+                <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
+                <input type="text" id="certSearchInput" placeholder="Filter certifications by name, issuer...">
+              </div>
+            </div>
+
+            <!-- Certifications Cards Grid -->
+            <div class="certs-grid" id="certsContainer">
+              <!-- Populated by app.js -->
+            </div>
+          </section>
+
+          <!-- Free YouTube Mentors -->
+          <section class="section" id="creators">
+            <div class="section-head">
+              <span class="section-tag">Verified Learning Channels</span>
+              <h2 class="section-title">Free YouTube Channels Worth Following</h2>
+              <p class="section-subtitle">
+                Pure technical learning and walkthroughs — not clickbait or get-rich-quick career hype.
+              </p>
+            </div>
+
+            <div class="creators-grid" id="creatorsContainer">
+              <!-- Populated by app.js -->
+            </div>
+          </section>
+
         </div>
       </div>
-    </section>
-
-    <!-- Section 2: Full Curriculum (Phases 0 - 8) -->
-    <section class="section" id="phases">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Step-by-Step Curriculum</span>
-          <h2 class="section-title">Phases 0 Through 8: Zero Knowledge → Job Ready</h2>
-          <p class="section-subtitle">
-            Detailed breakdown of every phase, key topics, verified free resources, and readiness milestones. Click any phase header to toggle details or use the controls below.
-          </p>
-        </div>
-
-        <!-- Toolbar for Phases -->
-        <div class="toolbar-wrap">
-          <div style="display: flex; gap: 0.75rem; align-items: center; flex-wrap: wrap;">
-            <button class="btn btn-outline" id="expandAllPhasesBtn" style="padding: 0.4rem 0.85rem; font-size: 0.825rem;">
-              Expand All
-            </button>
-            <button class="btn btn-outline" id="collapseAllPhasesBtn" style="padding: 0.4rem 0.85rem; font-size: 0.825rem;">
-              Collapse All
-            </button>
-          </div>
-          <div style="font-size: 0.85rem; color: var(--text-subtle); font-family: var(--font-mono);">
-            💡 Check topic boxes inside each phase to track your mastery
-          </div>
-        </div>
-
-        <!-- Phases Container -->
-        <div class="phases-wrapper" id="phasesContainer">
-          <!-- Populated dynamically by app.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 3: Specialization Tracks Explorer -->
-    <section class="section" id="specializations">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Career Paths (Phase 4 & 7)</span>
-          <h2 class="section-title">Specialization Tracks Explorer</h2>
-          <p class="section-subtitle">
-            By Month 4–6, you will have discovered which aspect of security excites you. Select any track below to compare job titles, daily tools, verified free labs, and paid certification goals.
-          </p>
-        </div>
-
-        <div class="tracks-explorer">
-          <!-- Track Selector Tabs -->
-          <div class="track-tabs" id="trackTabsContainer">
-            <!-- Populated by app.js -->
-          </div>
-
-          <!-- Active Track Content Pane -->
-          <div id="trackDetailsContainer">
-            <!-- Populated by app.js -->
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 4: Certifications Directory & Fact Check -->
-    <section class="section" id="certifications">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Credentials Hub</span>
-          <h2 class="section-title">Certifications Directory & 2026 Reality Check</h2>
-          <p class="section-subtitle">
-            Avoid dead links and expired promotions. Below is what is verified genuinely free right now, alongside high-value paid certifications worth saving for.
-          </p>
-        </div>
-
-        <!-- Prominent Expired Certs Warning Banner -->
-        <div class="honesty-banner">
-          <div class="honesty-head">
-            <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5"><polygon points="7.86 2 16.14 2 22 7.86 22 16.14 16.14 22 7.86 22 2 16.14 2 7.86 7.86 2"></polygon><line x1="12" y1="8" x2="12" y2="12"></line><line x1="12" y1="16" x2="12.01" y2="16"></line></svg>
-            2026 Fact Check: Popular "Free Certifications" That Are No Longer Free
-          </div>
-          <p style="font-size: 0.9rem; color: var(--text-muted); margin-bottom: 1.25rem;">
-            Do not waste hours chasing expired promotional vouchers you see in older Reddit threads or YouTube tutorials:
-          </p>
-          <div class="expired-grid" id="expiredCertsGrid">
-            <!-- Populated by app.js -->
-          </div>
-        </div>
-
-        <!-- Filter & Search Toolbar -->
-        <div class="toolbar-wrap">
-          <div class="filter-pills">
-            <button class="filter-btn active" data-cert-filter="all">All Certifications</button>
-            <button class="filter-btn" data-cert-filter="free">100% Free Verified</button>
-            <button class="filter-btn" data-cert-filter="training-only">Free Training / Paid Exam</button>
-            <button class="filter-btn" data-cert-filter="paid">Paid Industry Targets</button>
-          </div>
-          <div class="search-box">
-            <svg class="search-icon" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="11" cy="11" r="8"></circle><line x1="21" y1="21" x2="16.65" y2="16.65"></line></svg>
-            <input type="text" id="certSearchInput" placeholder="Filter certifications by name, issuer...">
-          </div>
-        </div>
-
-        <!-- Certifications Cards Grid -->
-        <div class="certs-grid" id="certsContainer">
-          <!-- Populated by app.js -->
-        </div>
-      </div>
-    </section>
-
-    <!-- Section 5: Curated YouTube Mentors -->
-    <section class="section" id="creators">
-      <div class="container">
-        <div class="section-head">
-          <span class="section-tag">Verified Learning Channels</span>
-          <h2 class="section-title">Free YouTube Channels Worth Following</h2>
-          <p class="section-subtitle">
-            Pure technical learning and walkthroughs — not clickbait or get-rich-quick career hype.
-          </p>
-        </div>
-
-        <div class="creators-grid" id="creatorsContainer">
-          <!-- Populated by app.js -->
-        </div>
-      </div>
-    </section>
+    </div>
   </main>
 
   <!-- Site Footer -->
@@ -264,18 +274,17 @@
         <div class="footer-brand">
           <h4>The Complete Cybersecurity Roadmap</h4>
           <p>
-            An open, accessible, community-oriented guide created by <strong>Osias</strong> for aspiring security professionals.
+            An open, accessible, community-oriented guide created by <strong>Muhammad Awais</strong> (Software Engineering Student at COMSATS Lahore).
           </p>
         </div>
-        <div class="footer-actions">
+        <div class="footer-links-group">
           <button class="btn btn-outline" id="resetProgressBtn" style="font-size: 0.85rem; color: var(--accent-rose); border-color: rgba(244, 63, 94, 0.3);">
             <svg width="14" height="14" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="1 4 1 10 7 10"></polyline><path d="M3.51 15a9 9 0 1 0 2.13-9.36L1 10"></path></svg>
             Reset Progress
           </button>
-          <a href="https://vercel.com" target="_blank" rel="noopener noreferrer" class="btn btn-primary" style="font-size: 0.85rem;">
-            <svg width="14" height="14" viewBox="0 0 24 24" fill="currentColor"><path d="M12 1L24 22H0L12 1Z"/></svg>
-            Deploy on Vercel
-          </a>
+          <a href="index.html" class="nav-link">Home</a>
+          <a href="overview.html" class="nav-link">Roadmap Overview</a>
+          <a href="index.html#creator" class="nav-link">About Creator</a>
         </div>
       </div>
 
@@ -284,7 +293,7 @@
           <span>Fact-checked against vendor specifications as of August–September 2026.</span>
         </div>
         <div style="font-family: var(--font-mono); font-size: 0.75rem;">
-          Created by Osias • Multi-Page Architecture Ready for Vercel
+          Created by Muhammad Awais • COMSATS Lahore
         </div>
       </div>
     </div>

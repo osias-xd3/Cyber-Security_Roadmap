@@ -121,7 +121,7 @@ img {
 
 .container {
   width: 100%;
-  max-width: 1200px;
+  max-width: 1240px;
   margin-left: auto;
   margin-right: auto;
   padding-left: 1.5rem;
@@ -352,7 +352,7 @@ img {
   justify-content: center;
   flex-wrap: wrap;
   gap: 1rem;
-  margin-bottom: 3rem;
+  margin-bottom: 2rem;
 }
 
 .btn {
@@ -493,7 +493,7 @@ img {
 }
 
 /* ==========================================================================
-   Creator Profile Section (About the Creator)
+   Creator Profile Section (About Muhammad Awais)
    ========================================================================== */
 
 .creator-section {
@@ -565,7 +565,7 @@ img {
 }
 
 .creator-info h3 {
-  font-size: 1.75rem;
+  font-size: 1.85rem;
   font-weight: 800;
   margin-bottom: 0.25rem;
 }
@@ -573,7 +573,7 @@ img {
 .creator-title-tag {
   color: var(--accent-cyan);
   font-weight: 600;
-  font-size: 0.95rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
 }
 
@@ -612,12 +612,12 @@ img {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
-  padding: 0.5rem 1rem;
+  padding: 0.55rem 1.25rem;
   border-radius: var(--radius-md);
   background-color: var(--bg-tertiary);
   border: 1px solid var(--border-subtle);
   color: var(--text-main);
-  font-size: 0.85rem;
+  font-size: 0.875rem;
   font-weight: 600;
   transition: all var(--transition-fast);
 }
@@ -629,7 +629,254 @@ img {
 }
 
 /* ==========================================================================
-   Overview Page: Executive High-Level Cards
+   ROADMAP PAGE: Sticky Sidebar Index Layout
+   ========================================================================== */
+
+.roadmap-layout {
+  display: grid;
+  grid-template-columns: 290px 1fr;
+  gap: 2.25rem;
+  align-items: start;
+  margin-top: 1rem;
+}
+
+@media (max-width: 992px) {
+  .roadmap-layout {
+    grid-template-columns: 1fr;
+  }
+}
+
+.roadmap-sidebar {
+  position: sticky;
+  top: 5.5rem;
+  max-height: calc(100vh - 7rem);
+  overflow-y: auto;
+  background: var(--card-bg);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-lg);
+  padding: 1.5rem;
+  backdrop-filter: blur(12px);
+  scrollbar-width: thin;
+}
+
+@media (max-width: 992px) {
+  .roadmap-sidebar {
+    position: static;
+    max-height: none;
+    margin-bottom: 1.5rem;
+  }
+}
+
+.sidebar-heading {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--accent-cyan);
+  margin-bottom: 1rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.sidebar-nav-list {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+}
+
+.sidebar-nav-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.55rem 0.75rem;
+  border-radius: var(--radius-sm);
+  color: var(--text-muted);
+  font-size: 0.85rem;
+  font-weight: 500;
+  transition: all var(--transition-fast);
+  border-left: 2.5px solid transparent;
+}
+
+.sidebar-nav-item:hover {
+  background-color: var(--bg-tertiary);
+  color: var(--text-main);
+  border-left-color: var(--accent-cyan);
+}
+
+.sidebar-nav-item.active {
+  background-color: rgba(6, 182, 212, 0.12);
+  color: var(--accent-cyan);
+  border-left-color: var(--accent-cyan);
+  font-weight: 700;
+}
+
+.sidebar-phase-badge {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  color: var(--text-subtle);
+}
+
+.sidebar-divider {
+  height: 1px;
+  background-color: var(--border-subtle);
+  margin: 1rem 0;
+}
+
+/* ==========================================================================
+   TOPICS CHECKLIST & IN-PLACE DROPDOWN RESOURCES
+   ========================================================================== */
+
+.topics-list {
+  display: grid;
+  gap: 1rem;
+  margin-bottom: 2rem;
+}
+
+.topic-row {
+  background-color: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 1.15rem 1.25rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.75rem;
+  transition: border-color var(--transition-fast);
+}
+
+.topic-row:hover {
+  border-color: rgba(6, 182, 212, 0.3);
+}
+
+.topic-row.done {
+  border-color: rgba(16, 185, 129, 0.3);
+}
+
+.topic-row.done .topic-name {
+  text-decoration: line-through;
+  color: var(--text-muted);
+}
+
+.topic-header-flex {
+  display: flex;
+  align-items: flex-start;
+  gap: 1rem;
+}
+
+.topic-info {
+  flex: 1;
+}
+
+.topic-name {
+  font-weight: 700;
+  font-size: 1rem;
+  color: var(--text-main);
+  margin-bottom: 0.25rem;
+}
+
+.topic-detail {
+  font-size: 0.875rem;
+  color: var(--text-muted);
+  line-height: 1.55;
+}
+
+/* Topic Dropdown Toggle Button */
+.topic-res-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.4rem;
+  font-size: 0.8rem;
+  font-weight: 600;
+  color: var(--accent-cyan);
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--border-subtle);
+  padding: 0.35rem 0.75rem;
+  border-radius: var(--radius-sm);
+  align-self: flex-start;
+  transition: all var(--transition-fast);
+}
+
+.topic-res-toggle:hover {
+  border-color: var(--accent-cyan);
+  background-color: rgba(6, 182, 212, 0.1);
+}
+
+.topic-res-toggle .toggle-icon {
+  transition: transform var(--transition-fast);
+}
+
+.topic-res-toggle.expanded .toggle-icon {
+  transform: rotate(180deg);
+}
+
+/* In-place Resource Drawer */
+.topic-res-drawer {
+  display: none;
+  background-color: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-sm);
+  padding: 0.85rem 1rem;
+  margin-top: 0.5rem;
+}
+
+.topic-res-drawer.open {
+  display: grid;
+  gap: 0.65rem;
+  animation: fadeIn 0.2s ease;
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(-4px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.topic-res-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.5rem 0.75rem;
+  background: var(--bg-secondary);
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  font-size: 0.825rem;
+}
+
+.topic-res-item-left {
+  display: flex;
+  flex-direction: column;
+}
+
+.topic-res-name {
+  font-weight: 700;
+  color: var(--text-main);
+}
+
+.topic-res-desc {
+  font-size: 0.75rem;
+  color: var(--text-muted);
+}
+
+.topic-res-link {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.3rem;
+  color: var(--accent-cyan);
+  font-weight: 700;
+  flex-shrink: 0;
+  padding: 0.25rem 0.5rem;
+  background-color: var(--bg-tertiary);
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.topic-res-link:hover {
+  border-color: var(--accent-cyan);
+  text-decoration: underline;
+}
+
+/* ==========================================================================
+   OVERVIEW PAGE: In-Place Expandable Dropdown Cards
    ========================================================================== */
 
 .overview-stepper {
@@ -645,23 +892,25 @@ img {
   border-radius: var(--radius-lg);
   padding: 1.75rem;
   backdrop-filter: blur(10px);
-  display: grid;
-  grid-template-columns: 180px 1fr 220px;
-  gap: 1.5rem;
-  align-items: center;
   transition: all var(--transition-normal);
-}
-
-@media (max-width: 950px) {
-  .overview-phase-card {
-    grid-template-columns: 1fr;
-    gap: 1rem;
-  }
 }
 
 .overview-phase-card:hover {
   border-color: var(--accent-cyan);
-  transform: translateX(4px);
+}
+
+.overview-card-header {
+  display: grid;
+  grid-template-columns: 180px 1fr auto;
+  gap: 1.5rem;
+  align-items: center;
+}
+
+@media (max-width: 900px) {
+  .overview-card-header {
+    grid-template-columns: 1fr;
+    gap: 1rem;
+  }
 }
 
 .overview-phase-meta {
@@ -697,24 +946,63 @@ img {
   line-height: 1.5;
 }
 
-.overview-phase-action {
-  text-align: right;
-}
-
-@media (max-width: 950px) {
-  .overview-phase-action {
-    text-align: left;
-  }
-}
-
-.overview-milestone-pill {
-  display: inline-block;
-  font-size: 0.8rem;
-  padding: 0.35rem 0.75rem;
-  border-radius: var(--radius-sm);
+.overview-dropdown-toggle {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.6rem 1.1rem;
   background-color: var(--bg-tertiary);
+  border: 1px solid var(--card-border);
+  border-radius: var(--radius-md);
+  color: var(--accent-cyan);
+  font-size: 0.85rem;
+  font-weight: 700;
+  cursor: pointer;
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+}
+
+.overview-dropdown-toggle:hover {
+  border-color: var(--accent-cyan);
+  background-color: rgba(6, 182, 212, 0.1);
+}
+
+.overview-dropdown-toggle .chevron {
+  transition: transform var(--transition-fast);
+}
+
+.overview-dropdown-toggle.expanded .chevron {
+  transform: rotate(180deg);
+}
+
+/* The In-Place Basic Overview Drawer */
+.overview-drawer {
+  display: none;
+  margin-top: 1.25rem;
+  padding-top: 1.25rem;
+  border-top: 1px solid var(--border-subtle);
+  animation: fadeIn 0.25s ease;
+}
+
+.overview-drawer.open {
+  display: block;
+}
+
+.overview-points-list {
+  display: grid;
+  gap: 0.65rem;
+}
+
+.overview-point-item {
+  display: flex;
+  align-items: flex-start;
+  gap: 0.65rem;
+  font-size: 0.875rem;
   color: var(--text-main);
-  border: 1px solid var(--border-subtle);
+  background: var(--bg-secondary);
+  padding: 0.65rem 1rem;
+  border-radius: var(--radius-sm);
+  border-left: 3px solid var(--accent-emerald);
 }
 
 /* ==========================================================================
@@ -898,124 +1186,7 @@ img {
 }
 
 /* ==========================================================================
-   First 30 Days Interactive Checklist
-   ========================================================================== */
-
-.checklist-grid {
-  display: grid;
-  gap: 1rem;
-}
-
-.check-item-card {
-  background-color: var(--card-bg);
-  border: 1px solid var(--card-border);
-  border-radius: var(--radius-md);
-  padding: 1.25rem 1.5rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1.25rem;
-  transition: all var(--transition-fast);
-}
-
-.check-item-card:hover {
-  border-color: var(--card-border-hover);
-  background-color: var(--card-bg-hover);
-}
-
-.check-item-card.completed {
-  opacity: 0.75;
-  border-color: rgba(16, 185, 129, 0.4);
-  background: rgba(16, 185, 129, 0.05);
-}
-
-.check-item-card.completed .check-title {
-  text-decoration: line-through;
-  color: var(--text-muted);
-}
-
-.custom-checkbox {
-  appearance: none;
-  -webkit-appearance: none;
-  width: 1.35rem;
-  height: 1.35rem;
-  border-radius: var(--radius-sm);
-  border: 2px solid var(--text-subtle);
-  background-color: var(--bg-tertiary);
-  cursor: pointer;
-  margin-top: 0.2rem;
-  flex-shrink: 0;
-  display: grid;
-  place-content: center;
-  transition: all var(--transition-fast);
-}
-
-.custom-checkbox:checked {
-  background-color: var(--accent-emerald);
-  border-color: var(--accent-emerald);
-}
-
-.custom-checkbox:checked::before {
-  content: "";
-  width: 0.4rem;
-  height: 0.7rem;
-  border: solid #070b14;
-  border-width: 0 2.5px 2.5px 0;
-  transform: rotate(45deg);
-  margin-bottom: 2px;
-}
-
-.check-content {
-  flex: 1;
-}
-
-.check-header {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  flex-wrap: wrap;
-  gap: 0.5rem;
-  margin-bottom: 0.35rem;
-}
-
-.check-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  color: var(--text-main);
-}
-
-.check-tag {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  padding: 0.2rem 0.6rem;
-  border-radius: var(--radius-full);
-  background-color: var(--bg-tertiary);
-  border: 1px solid var(--border-subtle);
-  color: var(--accent-cyan);
-}
-
-.check-desc {
-  font-size: 0.9rem;
-  color: var(--text-muted);
-  margin-bottom: 0.75rem;
-}
-
-.check-link {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.35rem;
-  font-size: 0.825rem;
-  font-weight: 600;
-  color: var(--accent-cyan);
-  transition: gap var(--transition-fast);
-}
-
-.check-link:hover {
-  gap: 0.6rem;
-  text-decoration: underline;
-}
-
-/* ==========================================================================
-   Roadmap Stepper & Phase Cards
+   Roadmap Phase Cards (Accordion)
    ========================================================================== */
 
 .phases-wrapper {
@@ -1032,6 +1203,7 @@ img {
   backdrop-filter: blur(12px);
   transition: all var(--transition-normal);
   box-shadow: var(--shadow-card);
+  scroll-margin-top: 6rem;
 }
 
 .phase-card:hover {
@@ -1123,118 +1295,36 @@ img {
   color: var(--text-muted);
 }
 
-/* Topics Checklist inside Phase */
-.topics-title {
-  font-size: 1.05rem;
-  font-weight: 700;
-  margin-bottom: 1rem;
-  display: flex;
-  align-items: center;
-  gap: 0.5rem;
-}
-
-.topics-list {
+/* Custom Checkbox inside Topic */
+.custom-checkbox {
+  appearance: none;
+  -webkit-appearance: none;
+  width: 1.35rem;
+  height: 1.35rem;
+  border-radius: var(--radius-sm);
+  border: 2px solid var(--text-subtle);
+  background-color: var(--bg-tertiary);
+  cursor: pointer;
+  margin-top: 0.2rem;
+  flex-shrink: 0;
   display: grid;
-  gap: 0.75rem;
-  margin-bottom: 2rem;
-}
-
-.topic-row {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 0.9rem 1.25rem;
-  display: flex;
-  align-items: flex-start;
-  gap: 1rem;
-  transition: border-color var(--transition-fast);
-}
-
-.topic-row:hover {
-  border-color: rgba(6, 182, 212, 0.3);
-}
-
-.topic-row.done {
-  opacity: 0.7;
-}
-
-.topic-row.done .topic-name {
-  text-decoration: line-through;
-}
-
-.topic-info {
-  flex: 1;
-}
-
-.topic-name {
-  font-weight: 700;
-  font-size: 0.95rem;
-  color: var(--text-main);
-  margin-bottom: 0.25rem;
-}
-
-.topic-detail {
-  font-size: 0.85rem;
-  color: var(--text-muted);
-  line-height: 1.5;
-}
-
-/* Resources Cards Grid */
-.resources-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
-  gap: 1rem;
-  margin-bottom: 2rem;
-}
-
-.resource-card {
-  background-color: var(--bg-secondary);
-  border: 1px solid var(--border-subtle);
-  border-radius: var(--radius-md);
-  padding: 1.25rem;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
+  place-content: center;
   transition: all var(--transition-fast);
 }
 
-.resource-card:hover {
-  border-color: var(--accent-cyan);
-  transform: translateY(-2px);
-  box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+.custom-checkbox:checked {
+  background-color: var(--accent-emerald);
+  border-color: var(--accent-emerald);
 }
 
-.resource-type {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
-  color: var(--accent-emerald);
-  text-transform: uppercase;
-  margin-bottom: 0.25rem;
-}
-
-.resource-name {
-  font-size: 1rem;
-  font-weight: 700;
-  margin-bottom: 0.4rem;
-  color: var(--text-main);
-}
-
-.resource-desc {
-  font-size: 0.825rem;
-  color: var(--text-muted);
-  margin-bottom: 1rem;
-}
-
-.resource-btn {
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  width: 100%;
-  font-size: 0.8rem;
-  font-weight: 600;
-  color: var(--accent-cyan);
-  padding-top: 0.5rem;
-  border-top: 1px solid var(--border-subtle);
+.custom-checkbox:checked::before {
+  content: "";
+  width: 0.4rem;
+  height: 0.7rem;
+  border: solid #070b14;
+  border-width: 0 2.5px 2.5px 0;
+  transform: rotate(45deg);
+  margin-bottom: 2px;
 }
 
 /* Milestone Checkpoint */
@@ -1279,6 +1369,7 @@ img {
   border-radius: var(--radius-lg);
   padding: 2rem;
   backdrop-filter: blur(12px);
+  scroll-margin-top: 6rem;
 }
 
 .track-tabs {
@@ -1516,6 +1607,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
   gap: 1.5rem;
+  scroll-margin-top: 6rem;
 }
 
 .cert-card {
@@ -1722,6 +1814,7 @@ img {
   display: grid;
   grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
   gap: 1.5rem;
+  scroll-margin-top: 6rem;
 }
 
 .creator-card {
@@ -1795,7 +1888,7 @@ img {
 .site-footer {
   border-top: 1px solid var(--border-subtle);
   background-color: var(--bg-secondary);
-  padding: 3.5rem 0 2rem;
+  padding: 3rem 0 2rem;
   margin-top: 5rem;
 }
 
@@ -1805,7 +1898,7 @@ img {
   align-items: center;
   flex-wrap: wrap;
   gap: 2rem;
-  margin-bottom: 2.5rem;
+  margin-bottom: 2rem;
 }
 
 .footer-brand h4 {
@@ -1817,13 +1910,13 @@ img {
 .footer-brand p {
   color: var(--text-muted);
   font-size: 0.9rem;
-  max-width: 450px;
+  max-width: 480px;
 }
 
-.footer-actions {
+.footer-links-group {
   display: flex;
   align-items: center;
-  gap: 1rem;
+  gap: 1.25rem;
   flex-wrap: wrap;
 }
 
@@ -1840,7 +1933,7 @@ img {
 }
 
 /* ==========================================================================
-   Modal / Toast / Floating Back to Top
+   Floating Back to Top
    ========================================================================== */
 
 .back-to-top {
@@ -1907,7 +2000,7 @@ img {
     padding: 1.25rem 1rem;
   }
 
-  .resources-grid, .certs-grid {
+  .certs-grid {
     grid-template-columns: 1fr;
   }
 }
@@ -1922,11 +2015,15 @@ img {
     color: #000000 !important;
   }
 
-  .site-header, .hero-cta-group, .toolbar-wrap, .btn, .filter-pills, .back-to-top, .site-footer {
+  .site-header, .hero-cta-group, .toolbar-wrap, .btn, .filter-pills, .back-to-top, .site-footer, .roadmap-sidebar {
     display: none !important;
   }
 
-  .phase-card, .check-item-card, .cert-card, .overview-phase-card {
+  .roadmap-layout {
+    grid-template-columns: 1fr !important;
+  }
+
+  .phase-card, .cert-card, .overview-phase-card {
     border: 1px solid #ccc !important;
     page-break-inside: avoid;
     margin-bottom: 1rem !important;
@@ -1934,7 +2031,7 @@ img {
     box-shadow: none !important;
   }
 
-  .phase-card.collapsed .phase-body {
+  .phase-card.collapsed .phase-body, .topic-res-drawer {
     display: block !important;
   }
 }
